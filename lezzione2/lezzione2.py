@@ -10,3 +10,13 @@ print(messaggio)
 
 #----------------------------------------------------------------------------
 #es 2.4
+
+
+nome:str="Andrea"
+
+nome_lower:str= nome.lower()
+
+nome_upper:str= nome.upper()
+
+print(f"{nome}, {nome_lower}, {nome_upper}")
+
