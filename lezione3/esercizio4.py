@@ -1,8 +1,10 @@
-def check_each(l:list):
+def check_each(l):
     for n in l:
-        if len(n)<5:
-            print(f"{n} è piu piccolo di 5")
-        elif len(n)>5:
-            print(f"{n} è piu grande di 5")
+        if n < 5:
+            print("minore")
+        elif n > 5:
+            print("maggiore")
         else:
-            print(f"{n} è lunga uguale a 5")
+            print("uguale")
+
+check_each([2, 5, 0.2, 9, 3, 30, 1])
