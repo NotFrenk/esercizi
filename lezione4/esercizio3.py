@@ -27,5 +27,5 @@ col_number=700
 result =""
 interazione1
  resto=23
- result=
+ result= 
 """
