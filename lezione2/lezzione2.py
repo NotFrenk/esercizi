@@ -114,10 +114,10 @@ for elementi in car_list:
 """"""
 invitati:list[str]=("Monica","Giorgio","Alex")  
 
-invito:str= f"la {car_list} è un buon mezzo per spostarsi,"
+invito:str= f" ti invito a cena domani alle 20:00"
 
-for elementi in car_list:
-    print(tras1)
-    print(tras2)            #I create a for loop to write all the variable sentences
-    print(tras3)
+for elementi in invitati:
+    print(invitati[0] + invito)
+    print(invitati[1] + invito)            #I create a for loop to write all the variable sentences
+    print(invitati[2] + invito)
     break
