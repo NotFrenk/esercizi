@@ -501,8 +501,6 @@ for persona,numeri in favorite_numbers.items():
 #country, population, and fact. 
 #Print the name of each city and all of the information you have stored about it.
 """
-
-"""
 cities:dict={
     "Amsterdam":{
         "paese":"Olanda",
@@ -512,7 +510,7 @@ cities:dict={
 
     "San Paolo":{
         "paese":"Brasile",
-        "popolazine":"12,33 milioni",
+        "popolazione":"12,33 milioni",
         "curiosità":"Ogni ora, lungo la Avenida Paulista, passano ben 5.700 auto e 1.400 autobus"
         },
         
@@ -522,6 +520,53 @@ cities:dict={
         "curiosità":"Ci sono più fontane a Roma che in qualsiasi altra città del mondo"
     }
 }
-for città in cities:
+for città,info in cities.items():
     print(f"{città}")
-    
+    print(f"paese:{info["paese"]}")
+    print(f"popolazione:{info["popolazione"]}")
+    print(f"curiosità:{info["curiosità"]}")
+"""
+#----------------------------------------------------------------------------
+#6-12.
+#Extensions: 
+#We’re now working with examples that are complex enough that they can be extended in any number of ways. 
+#Use one of the example programs from this chapter, 
+#and extend it by adding new keys and values, 
+#changing the context of the program, or improving the formatting of the output.
+"""
+cities:dict={
+    "Amsterdam":{
+        "paese":"Olanda",
+        "popolazione":"821.752",
+        "curiosità":"Ad Amsterdam ci sono più biciclette che persone",
+        "lingua":"Olandese"
+        },
+
+    "San Paolo":{
+        "paese":"Brasile",
+        "popolazione":"12,33 milioni",
+        "curiosità":"Ogni ora, lungo la Avenida Paulista, passano ben 5.700 auto e 1.400 autobus",
+        "lingua":"Portoghese"
+        },
+        
+    "Roma":{
+        "paese":"Italia",
+        "popolazione":"2,873 milioni",
+        "curiosità":"Ci sono più fontane a Roma che in qualsiasi altra città del mondo",
+        "lingua":"Italiano"
+    },
+
+    "londra":{
+        "paese":"Inghilterra",
+        "popolazione":"8,982 milioni",
+        "curiosità":"La metropolitana di Londra è la più antica al mondo",
+        "lingua":"Inglese"
+    }
+}
+for città,info in cities.items():
+    print(f"{città.upper()}")
+    print(f"Paese:\t{info["paese"]}")
+    print(f"Popolazione:\t{info["popolazione"]}")
+    print(f"Curiosità:\t{info["curiosità"]}")
+    print(f"Lingua:\t{info["lingua"]}\n")
+"""
