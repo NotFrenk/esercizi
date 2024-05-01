@@ -54,3 +54,247 @@ make_shirt()
 make_shirt(size="medium")
 make_shirt(size="S",message="che bello python")
 """
+
+#--------------------------------------------------------------------------------
+#8-5. 
+#Cities: 
+#Write a function called describe_city() that accepts the name of a city and its country. 
+#The function should print a simple sentence, such as Reykjavik is in Iceland. 
+#Give the parameter for the country a default value. 
+#Call your function for three different cities, at least one of which is not in the default country.
+"""
+def describe_city(city):
+    print(f"{city} is in Italy")
+
+describe_city("Napoli")
+describe_city("Roma")
+describe_city("las palmas")
+"""
+
+#--------------------------------------------------------------------------------
+#8-6. 
+#City Names:
+#Write a function called city_country() that takes in the name of a city and its country. 
+#The function should return a string formatted like this: "Santiago, Chile". 
+#Call your function with at least three city-country pairs, and print the values that are returned.
+"""
+def city_country(city,country):
+    print(f"{city}, {country}")
+city_country("Oslo","Norvegia")
+city_country("Roma","Italia")
+city_country("San paolo","Brasile")
+"""
+
+#--------------------------------------------------------------------------------
+#8-7. 
+#Album: 
+#Write a function called make_album() that builds a dictionary describing a music album. 
+#The function should take in an artist name and an album title, 
+#and it should return a dictionary containing these two pieces of information. 
+#Use the function to make three dictionaries representing different albums. 
+#Print each return value to show that the  dictionaries are storing the album information correctly. 
+#Use None to add an optional parameter to make_album() 
+#that allows you to store the number of songs on an album. 
+#If the calling line includes a value for the number of songs, add that value to the album’s dictionary. 
+#Make at least one new function call that includes the number of songs on an album.
+"""
+def make_album(artist_name,album_title,num_songs=None):
+    album={
+        "title":album_title,
+        "artist":artist_name
+    }
+    if num_songs is not None:
+        album['num_songs'] = num_songs
+    return album
+
+album1 = make_album("Michael Jackson", "Thriller", 9)
+album2 = make_album("The Beatles", "Abbey Road")
+album3 = make_album("Pink Floyd", "The Dark Side of the Moon", 10)
+
+# Print each return value to show that the dictionaries are storing the album information correctly
+print(album1)
+print(album2)
+print(album3)
+"""
+#--------------------------------------------------------------------------------
+#8-8. 
+#User Albums: 
+#Start with your program from Exercise 8-7. 
+#Write a while loop that allows users to enter an album’s artist and title. 
+#Once you have that information, call make_album() 
+#with the user’s input and print the dictionary that’s created. 
+#Be sure to include a quit value in the while loop.
+"""
+def make_album(artist_name,album_title,num_songs=None):
+    album={
+        "title":album_title,
+        "artist":artist_name
+    }
+    if num_songs is not None:
+        album['num_songs'] = num_songs
+    return album
+
+while True:
+    artist=input("scrivi il nome di un artista oppure 'quit' per uscire:")
+    if artist.lower()=="quit":
+        break
+    title=input("scrivi il nome dell\'album")
+    album_info=make_album(artist,title)
+    print(album_info)
+"""
+
+#--------------------------------------------------------------------------------
+#8-9. 
+#Messages: 
+#Make a list containing a series of short text messages. 
+#Pass the list to a function called show_messages(), which prints each text message.
+"""
+lista_messaggi:list=[
+    "Hello!",
+    "How are you?",
+    "What's up?",
+    "Just checking in.",
+    "Hope you're doing well.",
+    "Have a great day!"
+    ]
+def show_messages(messaggi):
+    for i in messaggi:
+        print(i)
+    return
+show_messages(lista_messaggi)
+"""
+#--------------------------------------------------------------------------------
+#8-10. 
+#Sending Messages:
+#Start with a copy of your program from Exercise 8-9. 
+#Write a function called send_messages() 
+#that prints each text message and moves each message to a new list called sent_messages as it’s printed. 
+#After calling the function, print both of your lists to make sure the messages were moved correctly.
+"""
+lista_messaggi:list=[
+    "Hello!",
+    "How are you?",
+    "What's up?",
+    "Just checking in.",
+    "Hope you're doing well.",
+    "Have a great day!"
+    ]
+sent_messages:list=[]
+
+def send_messages(messaggi,sent):
+    for i in messaggi:
+        print(i)
+        sent.append(i)
+    return
+send_messages(lista_messaggi,sent_messages)
+
+print(sent_messages)
+"""
+#--------------------------------------------------------------------------------
+#8-11. 
+#Archived Messages: 
+#Start with your work from Exercise 8-10. Call the function send_messages() with a copy of the list of messages. 
+#After calling the function, print both of your lists to show that the original list has retained its messages.
+"""
+lista_messaggi:list=[
+    "Hello!",
+    "How are you?",
+    "What's up?",
+    "Just checking in.",
+    "Hope you're doing well.",
+    "Have a great day!"
+    ]
+sent_messages:list=[]
+
+def send_messages(messaggi,sent):
+    for i in messaggi:
+        print(i)
+        sent.append(i)
+    return
+send_messages(lista_messaggi.copy(),sent_messages)
+print(lista_messaggi)
+print(sent_messages)
+"""
+#--------------------------------------------------------------------------------
+#8-12. 
+#Sandwiches: 
+#Write a function that accepts a list of items a person wants on a sandwich. 
+#The function should have one parameter that collects as many items as the function call provides, 
+#and it should print a summary of the sandwich that’s being ordered. 
+#Call the function three times, using a different number of arguments each time.
+"""
+def panino(*ingredienti):
+    print("\npreparando un panino con i seguenti ingredienti:")
+    for x in ingredienti:
+        print(" - " + x)
+    print("Eccoti il tuo panino")
+
+panino("pomodoro","insalata")
+panino("rucola","tacchino","formaggio")
+panino("pane","mortadella","prosciutto")
+"""
+
+#--------------------------------------------------------------------------------
+#8-13. 
+#User Profile:  
+#Build a profile of yourself by calling build_profile(), 
+#using your first and last names and three other key-value pairs that describe you. 
+#All the values must be passed to the function as parameters.  
+#The function then must return a string such as "Eric Crow, age 45, hair brown, weight 67"
+"""
+def build_profile(nome,cognome,età,colore_capelli,peso):
+    profilo=(f"{nome} {cognome}, age {età}, hair {colore_capelli}, weight {peso}")
+    return profilo
+profilo = build_profile("John", "Doe", 30, "brown", 75)
+print(profilo)
+"""
+
+#--------------------------------------------------------------------------------
+#8-14. 
+#Cars: 
+#Write a function that stores information about a car in a dictionary. 
+#The function should always receive a manufacturer and a model name. 
+#It should then accept an arbitrary number of keyword arguments. 
+#Call the function with the required information and two other name-value pairs, 
+#such as a color or an optional feature. 
+#Your function should work for a call like this one: 
+#car = make_car('subaru', 'outback', color='blue', tow_package=True) 
+#Print the dictionary that’s returned to make sure all the information was stored correctly. 
+"""
+def make_car(manufacturer_name,model_name,**parole_chiave):
+    info:dict={
+        "produttore":manufacturer_name,
+        "modello":model_name
+    }
+    info.update(parole_chiave)
+    return info
+car = make_car('subaru', 'outback', color='blue', tow_package=True) 
+print(car)
+"""
+
+#--------------------------------------------------------------------------------
+#8-15. 
+#Printing Models: 
+#Put the functions for the example printing_models.py in a separate file called printing_functions.py. 
+#Write an import statement at the top of printing_models.py, and modify the file to use the imported functions.
+"""
+from lezione4 import favorite_book
+print(favorite_book("Alice in Wonderland"))
+"""
+
+#--------------------------------------------------------------------------------
+#8-16. 
+#Imports: 
+#Using a program you wrote that has one function in it, 
+#store that function in a separate file. 
+#Import the function into your main program file, 
+#and call the function using each of these approaches:
+#import module_name
+#from module_name import function_name
+#from module_name import function_name as fn
+#import module_name as mn
+#from module_name import *
+"""
+
+"""
+import esercizio 
