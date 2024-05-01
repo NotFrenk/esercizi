@@ -295,6 +295,15 @@ print(favorite_book("Alice in Wonderland"))
 #import module_name as mn
 #from module_name import *
 """
-
+import prova
+from prova import display_message
+from prova import display_message as pippo
+import prova as mn
+from prova import *
 """
-import import.py
+
+#--------------------------------------------------------------------------------
+#8-17. 
+#Styling Functions: 
+#Choose any three programs you wrote for this chapter, 
+#and make sure they follow the styling guidelines described in this section.
