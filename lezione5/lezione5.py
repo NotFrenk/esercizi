@@ -128,8 +128,6 @@ print(remove_elements({5, 6, 7}, [7, 8, 9]))
 
 #Scrivi una funzione che unisce due dizionari. Se una chiave è presente in entrambi, somma i loro valori.
 """
-
-"""
 def merge_dictionaries(dict1: dict, dict2: dict) -> dict:
     risultato = {}
     
@@ -144,4 +142,6 @@ def merge_dictionaries(dict1: dict, dict2: dict) -> dict:
             risultato[chiave] = dict2[chiave]
     
     return risultato
+
+"""
 
