@@ -16,6 +16,8 @@ True
 print(is_subsequence("axc", "ahbgdc"))
 False
 
+
+
 #2
 Immagina di avere uno scrigno pieno di gioielli (rappresentati da una lista di numeri interi). Questi gioielli hanno vari valori, alcuni più preziosi di altri. Il tuo compito è trovare il terzo gioiello distinto più prezioso nello scrigno.
 
@@ -40,6 +42,7 @@ print(third_max([2, 2, 3, 1]))
 1
 
 
+
 #3
 Uno sviluppatore web deve sapere come progettare le dimensioni di una pagina web. Pertanto, data l'area specifica di una pagina Web rettangolare, il tuo compito ora è progettare una pagina Web rettangolare, la cui lunghezza L e larghezza W soddisfino i seguenti requisiti:
 
@@ -61,6 +64,7 @@ For example:
 Test	Result
 print(construct_rectangle(4))
 [2, 2]
+
 
 
 #4
