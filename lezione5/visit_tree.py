@@ -1,4 +1,4 @@
-#petodo ricorsivo
+#metodo ricorsivo
 """
 def visit_tree(tree:dict[int, list[int]], n: int):
     print(n)
@@ -13,7 +13,7 @@ visit_tree(tree, 1)
 """
 #media per ciascun livello
 def visiting_tree_iterative(tree:dict[int,list[int]], root:int):
-    result={}
+    resoult={}
     node_numbers_per_level={}
     stack:list[int] = [root]
     while stack: #while len(stack) !=0
@@ -29,9 +29,9 @@ def visiting_tree_iterative(tree:dict[int,list[int]], root:int):
                 stack.append((right_child, curr_level +1))
     
     for level in resoult:
-        result[level] /=node_numbers_per_level[level]
+        resoult[level] /=node_numbers_per_level[level]
 
-    return result
+    return resoult
 
 tree={1:[2,3], 2:[4,5], 3:[None,None], 4:[None, None], 5:[None, None]}
 visiting_tree_iterative(tree, 1)
