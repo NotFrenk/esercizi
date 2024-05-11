@@ -334,3 +334,81 @@ admin_privileges.privileges.show_privileges()
 #Imported Restaurant: 
 #Using your latest Restaurant class, store it in a module. Make a separate file that imports Restaurant. 
 #Make a Restaurant instance, and call one of Restaurant’s methods to show that the import statement is working properly.
+
+#-------------------------------------------------------------------------------------------------------------
+#9-11. Imported Admin: 
+#Start with your work from Exercise 9-8. Store the classes User, Privileges, and Admin in one module. 
+#Create a separate file, make an Admin instance, and call show_privileges() to show that everything is working correctly.
+
+#-------------------------------------------------------------------------------------------------------------
+#9-12. Multiple Modules: 
+#Store the User class in one module, and store the Privileges and Admin classes in a separate module. 
+#In a separate file, create an Admin instance and call show_privileges() 
+#to show that everything is still working correctly.
+
+#------------------------------------------------------------------------------------------------------------
+#9-13. Dice: 
+#Make a class Die with one attribute called sides, which has a default value of 6.
+#Write a method called roll_die() that prints a random number between 1 and the number of sides the die has.
+#Make a 6-sided die and roll it 10 times. Make a 10-sided die and a 20-sided die. Roll each die 10 times.
+"""
+import random
+class Die:
+    def __init__(self, sides:int=6):
+        self.sides=sides
+    
+    def roll_die(self):
+        print(random.randint(1, self.sides))
+
+
+six_sided_die = Die()
+print("DADO DA 6 (10 roll)")
+for _ in range(10):
+    print (six_sided_die.roll_die())
+
+
+ten_sided_die = Die(10)
+print("DADO DA 10 (10 roll)")
+for _ in range(10):
+    print(ten_sided_die.roll_die())
+
+venti_sided_die = Die(20)
+print("DADO DA 20 (10 roll)")
+for _ in range(10):
+    print(venti_sided_die.roll_die())
+"""
+
+#------------------------------------------------------------------------------------------------------------
+#9-14. Lottery: 
+#Make a list or tuple containing a series of 10 numbers and 5 letters. 
+#Randomly select 4 numbers or letters from the list 
+#and print a message saying that any ticket matching these 4 numbers or letters wins a prize.
+"""
+import random
+tupla=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'a', 'b', 'c', 'd', 'e')
+selezione_random=random.sample(tupla, 4)
+print("chiunque abbia la seguente combinazione di lettere e/o numeri vincerà un premio\n")
+print(selezione_random)
+"""
+
+#------------------------------------------------------------------------------------------------------------
+#9-15. Lottery Analysis: 
+#You can use a loop to see how hard it might be to win the kind of lottery you just modeled. 
+#Make a list or tuple called my_ticket. Write a loop that keeps pulling numbers until your ticket wins. 
+#Print a message reporting how many times the loop had to run to give you a winning ticket.
+import random
+
+
+tupla=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'a', 'b', 'c', 'd', 'e')
+
+my_ticket=(7, 3, 'd', 'c')
+
+numero_tentativi=0 
+
+while numeri_lotteria != my_ticket:
+    numeri_lotteria=random.sample(tupla, 4)
+    numero_tentativi += 1
+    if my_ticket == numeri_lotteria :
+        break
+
+print("It took {} attempts to win the lottery with your ticket.".format(numero_tentativi))
