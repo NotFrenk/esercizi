@@ -398,17 +398,18 @@ print(selezione_random)
 #Print a message reporting how many times the loop had to run to give you a winning ticket.
 import random
 
+mixed_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'a', 'b', 'c', 'd', 'e']
 
-tupla=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'a', 'b', 'c', 'd', 'e')
+my_ticket = [1, 'a', 5, 'c']
 
-my_ticket=(7, 3, 'd', 'c')
+num_attempts = 0
 
-numero_tentativi=0 
-
-while numeri_lotteria != my_ticket:
-    numeri_lotteria=random.sample(tupla, 4)
-    numero_tentativi += 1
-    if my_ticket == numeri_lotteria :
+while True:
+    lottery_draw = random.sample(mixed_list, 4)
+    
+    num_attempts += 1
+    
+    if my_ticket == lottery_draw:
         break
 
-print("It took {} attempts to win the lottery with your ticket.".format(numero_tentativi))
+print("It took {} attempts to win the lottery with your ticket.".format(num_attempts))
