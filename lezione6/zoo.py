@@ -31,8 +31,6 @@ class ZooKeeper:
             print("entgra")
 
 
-animale1.
-
 
 
 
