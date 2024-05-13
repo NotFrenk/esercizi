@@ -11,13 +11,6 @@ class Animal:
 
         healt:float=round(100 * (1 / age), 3)
 
-"""
-
-"""
-
-animale1=Animal("giraffa", "giraffonica", 5, 7.5, 3, "savana", 50)
-
-
 
 class Fence:
     def __init__(self, area:float, temperature:float, habitat:str):
@@ -34,6 +27,7 @@ class ZooKeeper:
 
     def add_animal(animal: Animal, fence: Fence):
         if animal.height and animal.width <= fence.area:
+            
             print("entgra")
 
 
