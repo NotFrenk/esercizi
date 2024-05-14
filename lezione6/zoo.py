@@ -12,14 +12,14 @@ class Animal:
         self.preferred_habitat :str =preferred_habitat
         self.health:float=round(100 * (1 / age), 3)
 
-        if age <= 0:
-            age=1
-        elif height <=0:
-            height=3
-        elif width <=0:
-            width=2
-        
+        if self.age <= 0:  #age control imput(no sense the AGE < 0 )
+            self.age= 1
+        elif self.height <=0: #height control imput(no sense the HEIGHT < 0 )
+            self.height=2
+        elif self.width <=0: #width control imput(no sense the WIDTH < 0 )
+            self.width=1
 
+        print(self.age , self.height , self.width)
 
 class Fence:
     def __init__(self, area:float, temperature:float, habitat:str):
@@ -28,7 +28,10 @@ class Fence:
         self.habitat = habitat
         self.animals = []
 
-
+        if self.area <= 0:  # area control imput (no sense the AREA < 0)
+            self.area= 10
+        elif self.habitat != str: #controllo per iserimento dati (da finire NON SO COME FARE)
+            self.habitat
 
 
     def __str__(self):
@@ -42,11 +45,19 @@ class ZooKeeper:
         self.surname:str = surname
         self.id:str = id
 
-    def add_animal(self, animal: Animal, fence: Fence, ):
-        if fence.area >= animal.height * animal.width and fence.habitat == animal.preferred_habitat:
-                fence.area -= animal.height * animal.width
-                fence.animals.append(animal)
-                print(f'{animal.name} aggiunto in {fence}')
+
+        #for ids in zoo_keeper.id:
+        if id != range[:init.zoo_keeper.id:]: #controllo per non avere ID UGUALI (non so come fare)
+            print ("bella")
+
+
+
+
+    def add_animal(self, animal: Animal, fence: Fence,):
+        if fence.area >= animal.height * animal.width and fence.habitat == animal.preferred_habitat :
+            fence.area -= animal.height * animal.width
+            fence.animals.append(animal)
+            print(f'{animal.name} aggiunto in {fence}')
         else:
             print(f'{animal.name} non può essere inserito in {fence}')
         
@@ -110,19 +121,23 @@ if __name__ == "__main__":
     zoo.zoo_keepers.append(zoo_keeper)
    # creating a fence istanche and ad it to the zoo
     fence = Fence(area=100, temperature=25, habitat="Continentale")
+    fence2= Fence(area=75, temperature=4, habitat='artico')
     zoo.fences.append(fence)
+    zoo.fences.append(fence2)
     #creating animal istances
     animal1 = Animal(name="Scoiattolo", species="Blabla", age=-1, height=5, width=2, preferred_habitat="Continentale")
     animal2 = Animal(name="Lupo", species="Lupus", age=14, height=8, width=3, preferred_habitat="Continentale")
+    pinguino = Animal(name="pinguino", species='pinguinos', age=2, height=1, width=0.5, preferred_habitat='artico' )
     #add and remove animal tries
     zoo_keeper.add_animal(animal1, fence, )
     zoo_keeper.add_animal(animal2, fence, )
     zoo_keeper.remove_animal(animal1, fence, )
+    zoo_keeper.add_animal(pinguino, fence2)
 
     zoo_keeper.feed(animal1, fence)
 
     total_cleaning_time = zoo_keeper.clean(fence)
     print(total_cleaning_time)
 
-    zoo.describe_zoo()
+    print(zoo.describe_zoo())
     
