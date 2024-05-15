@@ -107,16 +107,3 @@ a.describe_zoo()
 
 
 
-
-"""    def describe_zoo(self):
-        print ("Guardians:\n")
-        for keeper in self.zoo_keepers:
-            print(f"ZooKeeper(name={keeper.name}, surname={keeper.surname}, id={keeper.id})\n") 
-
-        print ("Fences:\n")
-        for fence in self.fences:
-            print (f"Fence(area={fence.area},temperature={fence.temperature}, habitat={fence.habitat})\nwith animals:\n")
-            for animal in fence.animals:
-                print (f"Animal(name={animal.name}, species={animal.species}, age={animal.age})\n")
-            print ("#" * 30 + "\n")
-"""
