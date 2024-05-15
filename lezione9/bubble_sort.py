@@ -19,3 +19,18 @@ def bubble_sorte_migliorato(x:list[float]):
                 temp: float= x[j + 1]
                 x[j + 1] = x[j]
                 x[j] = x[j + 1]
+
+
+
+"""MIGLIORAMENTO 2.0"""
+def bubble_sorte_migliorato(x:list[float]):
+    for i in range(len(x)):
+        swap:bool = False
+        for j in  range(len(x) - i - 1):
+            if x[j] > x[j + 1]:
+                temp: float= x[j + 1]
+                swap = True
+                x[j + 1] = x[j]
+                x[j] = x[j + 1]
+        if not swap:
+            break
