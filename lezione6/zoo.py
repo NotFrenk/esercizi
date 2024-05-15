@@ -45,7 +45,7 @@ class ZooKeeper:
 
 
     def add_animal(self, animal: Animal, fence: Fence,):
-        if fence.area >= animal.height * animal.width and fence.habitat == animal.preferred_habitat :
+        if fence.area >= animal.height * animal.width and fence.habitat in animal.preferred_habitat.split(','):
             fence.area -= animal.height * animal.width
             fence.animals.append(animal)
             print(f'{animal.name} aggiunto in {fence}')
@@ -95,16 +95,18 @@ class Zoo:
     def describe_zoo(self):
         description ="Guardians:\n"
         for keeper in self.zoo_keepers:
-            description +=f"ZooKeeper(name={keeper.name}, surname={keeper.surname}, id={keeper.id})\n"
+            description += f"ZooKeeper(name={keeper.name}, surname={keeper.surname}, id={keeper.id})\n"
 
-        description +="Fences:\n"
+        description += "Fences:\n"
         for fence in self.fences:
-            description +=f"Fence(area={fence.area},temperature={fence.temperature}, habitat={fence.habitat})\nwith animals:\n"
-            for animal in fence.animals:
-                description +=f"Animal(name={animal.name}, species={animal.species}, age={animal.age})\n"
-            description +="#" * 30 + "\n"
-
-        return description
+            description += f"Fence(area={fence.area}, temperature={fence.temperature}, habitat={fence.habitat})\nwith animals:\n"
+            if fence.animals:
+                for animal in fence.animals:
+                    description += f"    Animal(name={animal.name}, species={animal.species}, age={animal.age}, height={animal.height}, width={animal.width}, preferred_habitats={animal.preferred_habitats})\n"
+            else:
+                description += "    No animals in this fence.\n"
+            description += "#" * 30 + "\n"
+        print(description)
 
 
 if __name__ == "__main__":
