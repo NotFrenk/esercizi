@@ -30,9 +30,6 @@ class Fence:
 
         if self.area <= 0:  # area control imput (no sense the AREA < 0)
             self.area= 10
-        elif self.habitat != str: #controllo per iserimento dati (da finire NON SO COME FARE)
-            self.habitat
-
 
     def __str__(self):
         return f'Fence(area={self.area}, temperature={self.temperature}, habitat={self.habitat})'
@@ -44,12 +41,6 @@ class ZooKeeper:
         self.name:str=name
         self.surname:str = surname
         self.id:str = id
-
-
-        #for ids in zoo_keeper.id:
-        if id != range[:init.zoo_keeper.id:]: #controllo per non avere ID UGUALI (non so come fare)
-            print ("bella")
-
 
 
 
@@ -76,6 +67,9 @@ class ZooKeeper:
                     animal.width *= 1.02
                     fence.area -= animal.height * animal.width
                     print(f"{animal.name} è stato nutrito.")
+                else:
+                    print("non posso nutrire lanimale ")
+                    
 
     def clean(self,fence: Fence):
         if fence.area == 0:
@@ -121,13 +115,13 @@ if __name__ == "__main__":
     zoo.zoo_keepers.append(zoo_keeper)
    # creating a fence istanche and ad it to the zoo
     fence = Fence(area=100, temperature=25, habitat="Continentale")
-    fence2= Fence(area=75, temperature=4, habitat='artico')
+    fence2= Fence(area=6, temperature=4, habitat='artico')
     zoo.fences.append(fence)
     zoo.fences.append(fence2)
     #creating animal istances
     animal1 = Animal(name="Scoiattolo", species="Blabla", age=-1, height=5, width=2, preferred_habitat="Continentale")
     animal2 = Animal(name="Lupo", species="Lupus", age=14, height=8, width=3, preferred_habitat="Continentale")
-    pinguino = Animal(name="pinguino", species='pinguinos', age=2, height=1, width=0.5, preferred_habitat='artico' )
+    pinguino = Animal(name="pinguino", species='pinguinos', age=2, height=3, width=2, preferred_habitat='artico' )
     #add and remove animal tries
     zoo_keeper.add_animal(animal1, fence, )
     zoo_keeper.add_animal(animal2, fence, )
