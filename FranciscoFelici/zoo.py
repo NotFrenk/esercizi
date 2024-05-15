@@ -86,7 +86,7 @@ class Zoo:
             description += f"Fence(area={fence.area}, temperature={fence.temperature}, habitat={fence.habitat})\nwith animals:\n"
             if fence.animals:
                 for animal in fence.animals:
-                    description += f"Animal(name={animal.name}, species={animal.species}, age={animal.age}, height={animal.height}, width={animal.width}, preferred_habitats={animal.preferred_habitats})\n"
+                    description += f"bella"
             else:
                 description += "    No animals in this fence.\n"
             description += "#" * 30 + "\n"
@@ -102,7 +102,7 @@ zoo_keeper2 = ZooKeeper("Lorenzo", "Maggi", 1234)
 animal1 = Animal(name="Scoiattolo", species="Blabla", age=-1, height=5, width=2, preferred_habitat="Continentale")
 animal2 = Animal(name="Lupo", species="Lupus", age=14, height=8, width=3, preferred_habitat="Continentale")
 pinguino = Animal(name="pinguino", species='pinguinos', age=2, height=3, width=2, preferred_habitat='artico' )
-
+ZooKeeper.add_animal(animal1 , fence )
 a=Zoo([fence ,fence2],[zoo_keeper1,zoo_keeper2])
 
 a.describe_zoo()
