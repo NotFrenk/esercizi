@@ -93,34 +93,4 @@ class Zoo:
 
 
 
-    
-def run_tests():
-    # Creazione di alcuni animali
-    lion = Animal("Simba", "Lion", 5, 1.5, 2.0, "savannah")
-    elephant = Animal("Dumbo", "Elephant", 10, 3.0, 4.0, "jungle")
 
-    # Creazione di alcune recinzioni
-    savannah_fence = Fence(100, 25, "savannah")
-    jungle_fence = Fence(200, 30, "jungle")
-
-    # Creazione di alcuni guardiani dello zoo
-    keeper1 = ZooKeeper("John", "Doe", "123")
-    keeper2 = ZooKeeper("Jane", "Smith", "456")
-
-    # Aggiunta di animali alle recinzioni
-    keeper1.add_animal(lion, savannah_fence)
-    keeper2.add_animal(elephant, jungle_fence)
-
-    # Creazione dello zoo
-    my_zoo = Zoo()
-
-    # Aggiunta delle recinzioni e dei guardiani dello zoo a my_zoo
-    my_zoo.fences = [savannah_fence, jungle_fence]
-    my_zoo.zoo_keepers = [keeper1, keeper2]
-
-    # Chiamata della funzione describe_zoo
-    print("\nDescrizione dello zoo:")
-    my_zoo.describe_zoo()
-
-# Esegui i test
-run_tests()
