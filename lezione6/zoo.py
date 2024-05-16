@@ -26,7 +26,7 @@ class Fence:
         self.area = area
         self.temperature = temperature
         self.habitat = habitat
-        self.animals = []
+        self.animals :list[Animal]= []
 
         if self.area <= 0:  # area control imput (no sense the AREA < 0)
             self.area= 10
@@ -102,7 +102,7 @@ class Zoo:
             description += f"Fence(area={fence.area}, temperature={fence.temperature}, habitat={fence.habitat})\nwith animals:\n"
             if fence.animals:
                 for animal in fence.animals:
-                    description += f"    Animal(name={animal.name}, species={animal.species}, age={animal.age}, height={animal.height}, width={animal.width}, preferred_habitats={animal.preferred_habitats})\n"
+                    description += f"    Animal(name={animal.name}, species={animal.species}, age={animal.age}, height={animal.height}, width={animal.width}, preferred_habitats={animal.preferred_habitat})\n"
             else:
                 description += "    No animals in this fence.\n"
             description += "#" * 30 + "\n"

@@ -21,7 +21,7 @@ class Fence:
         self.area = area
         self.temperature = temperature
         self.habitat = habitat
-        self.animals = []
+        self.animals :list[Animal]= []
 
         if self.area <= 0:  
             self.area= 10
@@ -48,13 +48,11 @@ class ZooKeeper:
             fence.area += animal.height * animal.width
 
     def feed(self, animal: Animal, fence: Fence, ):
-        for fence in Zoo.fences:
-            for animal in fence.animals:
-                if animal.health < 100 and fence.area >= animal.height * animal.width * 1.02:
-                    animal.health += 1
-                    animal.height *= 1.02
-                    animal.width *= 1.02
-                    fence.area -= animal.height * animal.width
+        if animal.health < 100 and fence.area >= animal.height * animal.width * 1.02:
+            animal.health += 1
+            animal.height *= 1.02
+            animal.width *= 1.02
+            fence.area -= animal.height * animal.width
 
                     
 
@@ -71,6 +69,7 @@ class Zoo:
     def __init__(self, fences:list[Fence], zoo_kepers:list[ZooKeeper]):
         self.fences:list[Fence] = fences
         self.zoo_keepers:list[ZooKeeper] = zoo_kepers
+    
         
 
 
@@ -86,7 +85,7 @@ class Zoo:
             description += f"Fence(area={fence.area}, temperature={fence.temperature}, habitat={fence.habitat})\nwith animals:\n"
             if fence.animals:
                 for animal in fence.animals:
-                    description += f"bella"
+                    description += f"    Animal(name={animal.name}, species={animal.species}, age={animal.age}, height={animal.height}, width={animal.width}, preferred_habitats={animal.preferred_habitat})\n"
             else:
                 description += "    No animals in this fence.\n"
             description += "#" * 30 + "\n"
@@ -95,18 +94,33 @@ class Zoo:
 
 
     
-fence = Fence(area=100, temperature=25, habitat="Continentale")
-fence2= Fence(area=6, temperature=4, habitat='artico')
-zoo_keeper1 = ZooKeeper("pippo", "baldo" , 2222)
-zoo_keeper2 = ZooKeeper("Lorenzo", "Maggi", 1234)
-animal1 = Animal(name="Scoiattolo", species="Blabla", age=-1, height=5, width=2, preferred_habitat="Continentale")
-animal2 = Animal(name="Lupo", species="Lupus", age=14, height=8, width=3, preferred_habitat="Continentale")
-pinguino = Animal(name="pinguino", species='pinguinos', age=2, height=3, width=2, preferred_habitat='artico' )
-ZooKeeper.add_animal(animal1 , fence )
-a=Zoo([fence ,fence2],[zoo_keeper1,zoo_keeper2])
+def run_tests():
+    # Creazione di alcuni animali
+    lion = Animal("Simba", "Lion", 5, 1.5, 2.0, "savannah")
+    elephant = Animal("Dumbo", "Elephant", 10, 3.0, 4.0, "jungle")
 
-a.describe_zoo()
+    # Creazione di alcune recinzioni
+    savannah_fence = Fence(100, 25, "savannah")
+    jungle_fence = Fence(200, 30, "jungle")
 
+    # Creazione di alcuni guardiani dello zoo
+    keeper1 = ZooKeeper("John", "Doe", "123")
+    keeper2 = ZooKeeper("Jane", "Smith", "456")
 
+    # Aggiunta di animali alle recinzioni
+    keeper1.add_animal(lion, savannah_fence)
+    keeper2.add_animal(elephant, jungle_fence)
 
+    # Creazione dello zoo
+    my_zoo = Zoo()
 
+    # Aggiunta delle recinzioni e dei guardiani dello zoo a my_zoo
+    my_zoo.fences = [savannah_fence, jungle_fence]
+    my_zoo.zoo_keepers = [keeper1, keeper2]
+
+    # Chiamata della funzione describe_zoo
+    print("\nDescrizione dello zoo:")
+    my_zoo.describe_zoo()
+
+# Esegui i test
+run_tests()
