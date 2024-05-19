@@ -110,3 +110,95 @@ indovina_il_numero()
 
 """
 
+#3. E-commerce Shopping Cart:
+#Create a function that defines a product with a name, price, and quantity.
+# Create a function that manages the shopping cart, allowing the user to add, remove, 
+#and view products in the cart.
+#The function should calculate the cart total and apply any discounts or taxes.
+#Implement a for loop to iterate over the items in the cart and print detailed information about each product 
+#and the total.
+"""
+cart = []
+def Shopping_Cart(name:str, price:float, quantity:int ):
+"""
+
+
+#4. Text Analysis:
+#Create a function that reads a text file and counts the number of occurrences of each word.
+#The function should print a report showing the most frequent words and their number of occurrences.
+#You can use a for loop to iterate over the words in the text and a dictionary to store the occurrences.
+#Implement error handling to handle missing files or other input issues.
+"""
+def read_and_count_words(text:str):
+    word_counts = {}
+    for words in text:
+        print (words)
+text:str="ciao come stiai?. A presto ciao, ciao."
+"""
+
+
+
+#6. Password Generator:
+#Create a function that generates a random password with a specified length and desired character types (lowercase letters, uppercase letters, numbers, symbols).
+#Allow the user to specify the password length and desired character types.
+#Generate and return a random password that meets the user's criteria.
+"""
+import random
+
+def generate_password(length, use_lowercase=True, use_uppercase=True, use_numbers=True, use_symbols=True):
+    lowercase_letters = 'abcdefghijklmnopqrstuvwxyz'
+    uppercase_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    numbers = '0123456789'
+    symbols = '!@#$%^&*()-_=+[]{}|;:,.<>?/'
+
+    all_characters = ''
+    if use_lowercase:
+        all_characters += lowercase_letters
+    if use_uppercase:
+        all_characters += uppercase_letters
+    if use_numbers:
+        all_characters += numbers
+    if use_symbols:
+        all_characters += symbols
+
+    if not all_characters:
+        return "Error: No character types selected. Please select at least one character type."
+    
+    password = ''.join(random.choice(all_characters) for _ in range(length))
+    return password
+
+length = int(input("Enter the desired password length: "))
+use_lowercase = input("Include lowercase letters? (yes/no): ").strip().lower() == 'yes'
+use_uppercase = input("Include uppercase letters? (yes/no): ").strip().lower() == 'yes'
+use_numbers = input("Include numbers? (yes/no): ").strip().lower() == 'yes'
+use_symbols = input("Include symbols? (yes/no): ").strip().lower() == 'yes'
+
+password = generate_password(length, use_lowercase, use_uppercase, use_numbers, use_symbols)
+print("Generated Password:", password)
+"""
+
+#8. ATM Machine Simulator:
+#Create a function that simulates an ATM machine.
+#Initialize an account with a starting balance.
+#Allow the user to perform transactions such as deposit, withdraw, and check balance.
+#Validate transactions against the account balance and available funds.
+#Provide appropriate feedback to the user for each transaction.
+
+def atm_simulator(initial_balance):
+    balance = initial_balance
+
+    def check_balance():
+        nonlocal balance
+        return balance
+    
+    def deposit (ammount):
+        nonlocal balance
+        if ammount > 0:
+            balance += ammount
+            return f'Deposited ${ammount}'
+       
+
+
+
+
+initial_balance = 1000
