@@ -208,8 +208,27 @@ rimbalzo()
  
 # "Non è possibile memorizzare il file di 1048576 byte. Spazio insufficiente."
 
-# Inizialmente, il numero totale di blocchi disponibili sul supporto di memorizzazione per il salvataggio dei file è un numero intero pari a 1000 blocchi. 
+# Inizialmente, il numero totale di blocchi disponibili sul supporto di memorizzazione per il salvataggio dei file è un numero intero pari a 
+#1000 blocchi. 
 
 
+import math
 
+def memorizza_file(files: list[int]):
+    spazio_totale_blocchi = 1000  # Numero totale di blocchi disponibili
+    block_size = 512  # Dimensione di ciascun blocco in byte
 
+    for original_size in files:
+        compressed_size = original_size * 0.80  # Calcola l'80% della dimensione non compressa
+        num_blocks = math.ceil(compressed_size / block_size)  # Calcola il numero di blocchi da 512 byte necessari
+
+        if spazio_totale_blocchi >= num_blocks:
+            spazio_totale_blocchi -= num_blocks
+            print(f"File di {original_size} byte compresso in {compressed_size:.1f} byte e memorizzato. "
+                  f"Blocchi usati: {num_blocks}. Blocchi rimanenti: {spazio_totale_blocchi}.")
+        else:
+            print(f"Non è possibile memorizzare il file di {original_size} byte. Spazio insufficiente.")
+            break
+    return
+
+memorizza_file([1100, 20000, 1048576, 512, 5000])
