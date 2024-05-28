@@ -88,11 +88,38 @@
 #     - Piccolo balzo (30% di probabilità): avanza di 1 quadrato e richiede 5 di energia.
 #     - Piccola scivolata (20% di probabilità): arretra di 2 quadrati e richiede 8 di energia. Non può andare sotto il quadrato 1.
 
+#_________________________________________________________________________________________________________________________________
+
+# 3. Ostacoli e Bonus
+# Sulla pista di gara sono presenti alcuni ostacoli e bonus a posizioni fisse, 
+# che influenzano direttamente il movimento degli animali quando vengono calpestati. 
+# Gli ostacoli causano uno slittamento all'indietro, mentre i bonus offrono un avanzamento extra.
+
+# Dettagli Implementativi:
+# - Ostacoli:
+# Posizionati a intervalli regolari sulla pista (es. ai quadrati 15, 30, 45), 
+# gli ostacoli riducono la posizione dell'animale di un numero specificato di quadrati (es: -3, -5, -7). 
+# Gli ostacoli sono rappresentati da un dizionario che mappa le posizioni degli ostacoli sul percorso (chiave) ed i relativi effetti (valore). 
+# Assicurarsi che nessun animale retroceda al di sotto del primo quadrato a seguito di un ostacolo.
+
+# - Bonus:
+# Dislocati strategicamente lungo la corsa (es. ai quadrati 10, 25, 50), 
+# i bonus aumentano la posizione dell'animale di un numero determinato di quadrati (es: 5, 3, 10). 
+# I bonus sono rappresentati da un dizionario che mappa le posizioni dei bonus sul percorso (chiave) ed i relativi effetti (valore). 
+# Consentire agli animali di beneficiare pienamente dei bonus, ma non oltrepassare il traguardo.
+
+
 import random
 
+ostacoli = {15: -3, 30: -5, 45: -7}
+bonus = {10: 5, 25: 3, 50: 10}
 
 def stampa_posizioni(tartaruga, lepre):
     pista=['-'] * 70
+    if tartaruga <= 0:
+        tartaruga =1
+    if lepre<= 0:
+        lepre =1
     if tartaruga == lepre:  
         pista[tartaruga -1] = 'OUCH!!!'
     else:
@@ -105,6 +132,18 @@ def determina_meteo(tick):
     if tick % 10 == 0:
         return random.choice(['soleggiato', 'pioggia'])
     return None
+
+
+def applica_ostacoli_bonus(posizione, dizionario):
+    if posizione in dizionario:
+        posizione += dizionario[posizione]
+        if posizione < 1:
+            posizione = 1
+        elif posizione > 70:
+            posizione = 70
+    return posizione 
+
+
 
 
 def mossa_tartaruga(posizione, meteo, stamina):
@@ -128,6 +167,9 @@ def mossa_tartaruga(posizione, meteo, stamina):
         
     if meteo=='pioggia':
         posizione -= 1  #penalità per la pioggia 
+
+    posizione = applica_ostacoli_bonus(posizione, ostacoli)
+    posizione = applica_ostacoli_bonus(posizione, bonus)
 
     if posizione < 1:
         posizione = 1
@@ -165,6 +207,9 @@ def mossa_lepre(posizione, meteo, stamina):
 
     if meteo == 'pioggia':
         posizione -= 2  #penalità pioggia 
+
+    posizione = applica_ostacoli_bonus(posizione, ostacoli)
+    posizione = applica_ostacoli_bonus(posizione, bonus)
 
     if posizione < 1:
         posizione = 1
