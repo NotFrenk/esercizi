@@ -115,6 +115,9 @@ ostacoli = {15: -3, 30: -5, 45: -7}
 bonus = {10: 5, 25: 3, 50: 10}
 
 def stampa_posizioni(tartaruga, lepre):
+    if not(1<=tartaruga <=70 and 1<= lepre <=70):
+        tartaruga =1
+        lepre=1
     pista=['-'] * 70
     if tartaruga <= 0:
         tartaruga =1
