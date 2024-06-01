@@ -2,7 +2,7 @@
 #Creating an Abstract Class with Abstract Methods
 # Create an abstract class Shape with an abstract method area and another abstract method perimeter. 
 # Then, create two subclasses Circle and Rectangle that implement the area and perimeter methods.
-
+"""
 from abc import ABC, abstractmethod
 
 import math
@@ -48,4 +48,6 @@ print(f"Circle area: {circle.area()}\n")
 print(f"Circle perimeter: {circle.perimeter()}\n")
 print(f"Rectangle area: {rectangle.area()}\n")
 print(f"Rectangle perimeter: {rectangle.perimeter()}\n")
+"""
+
 
