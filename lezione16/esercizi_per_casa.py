@@ -93,48 +93,65 @@ c.mostra()
 # Restituisce un elenco di ricette o un messaggio di errore se nessuna ricetta contiene l'ingrediente.
 
 class RecipeManager:
-
-    def __init__(self,):
+    def __init__(self):
         self.recipes = {}
 
-    def create_recipe(self, name:str, ingredients):
+    def create_recipe(self, name: str, ingredients):
         if name in self.recipes:
             return f'ERRORE: {name} --> questa ricetta esiste già'
         self.recipes[name] = set(ingredients)
-        return f'Ricetta {name} creata con successo'
+        return {name : ingredients}
+#        return f'Ricetta {name} creata con successo'
     
     def add_ingredient(self, recipe_name, ingredient):
         if recipe_name not in self.recipes:
             return f'ERRORE: {recipe_name} --> questa ricetta non esiste'
         if ingredient in self.recipes[recipe_name]:
-            return f'ERRORE: {ingredient} --> questo ingradiente esiste già nella ricetta {recipe_name}'
+            return f'ERRORE: {ingredient} --> questo ingrediente esiste già nella ricetta {recipe_name}'
         self.recipes[recipe_name].add(ingredient)
-        return f'Ingrediente {ingredient} AGGIUNTO alla ricetta {recipe_name}'
+        return  
+#        return f'Ingrediente {ingredient} AGGIUNTO alla ricetta {recipe_name}'
     
-    def remove_ingredient(self,recipe_name, ingredient):
+    def remove_ingredient(self, recipe_name, ingredient):
         if recipe_name not in self.recipes:
             return f'ERRORE: {recipe_name} --> questa ricetta non esiste'
-        if ingredient in self.recipes[recipe_name]:
-            return f'ERRORE: {ingredient} --> questo ingradiente esiste già nella ricetta {recipe_name}'
+        if ingredient not in self.recipes[recipe_name]:
+            return f'ERRORE: {ingredient} --> questo ingrediente non esiste nella ricetta {recipe_name}'
         self.recipes[recipe_name].remove(ingredient)
-        return f'Ingrediente {ingredient} RIMOSSO alla ricetta {recipe_name}'
+#        return f'Ingrediente {ingredient} RIMOSSO dalla ricetta {recipe_name}'
     
     def update_ingredient(self, recipe_name, old_ingredient, new_ingredient):
         if recipe_name not in self.recipes:
             return f'ERRORE: {recipe_name} --> questa ricetta non esiste'
-        if old_ingredient in self.recipes[recipe_name]:
-            return f'ERRORE: {old_ingredient} --> questo ingradiente esiste già'
+        if old_ingredient not in self.recipes[recipe_name]:
+            return f'ERRORE: {old_ingredient} --> questo ingrediente non esiste nella ricetta {recipe_name}'
         self.recipes[recipe_name].remove(old_ingredient)
         self.recipes[recipe_name].add(new_ingredient)
-        return f'ingrediente {old_ingredient} sostituito con {new_ingredient} nella ricetta {recipe_name}'
+#        return f'Ingrediente {old_ingredient} sostituito con {new_ingredient} nella ricetta {recipe_name}'
 
     def list_recipes(self):
         if not self.recipes:
             return 'nessuna ricetta trovata'
-        return f'ricette disponibili: {','.join(self.recipes.keys())}'
+        return f'ricette disponibili: {",".join(self.recipes.keys())}'
     
     def list_ingredients(self, recipe_name):
-        if not self.recipes:
-            return f'ERRORE: la ricetta {self.recipes} non esiste'
-        return f"""Ingredienti per la ricetta: {self.recipes}\n"""
+        if recipe_name not in self.recipes:
+            return f'ERRORE: {recipe_name} questa ricetta non esiste'
+#        return {'ricetta': recipe_name, 'ingredienti': list(self.recipes[recipe_name])}
+    
+    def search_recipe_by_ingredient(self, ingredient):
+        found_recipes = [name for name , ingredients in self.recipes.items() if ingredient in ingredients]
+        if not found_recipes:
+            return {'errore': f'nessuna ricetta trovata con l\'ingrediente {ingredient}'}
+        return {'ricette_con_ingrediente': ingredient, 'ricette': found_recipes}
+    
 
+
+ 	
+
+manager = RecipeManager()
+print(manager.create_recipe("Torta di mele", ["Farina", "Uova", "Mele"]))
+print(manager.add_ingredient("Torta di mele", "Zucchero"))
+print(manager.list_recipes()) # ['Torta di mele']
+print(manager.list_ingredients("Torta di mele"))
+print(manager.search_recipe_by_ingredient("Uova"))
