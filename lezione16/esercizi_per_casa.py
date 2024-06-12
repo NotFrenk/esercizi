@@ -91,7 +91,7 @@ c.mostra()
 #     - search_recipe_by_ingredient(ingredient): 
 # Trova e restituisce tutte le ricette che contengono un determinato ingrediente. 
 # Restituisce un elenco di ricette o un messaggio di errore se nessuna ricetta contiene l'ingrediente.
-
+"""
 class RecipeManager:
     def __init__(self):
         self.recipes = {}
@@ -100,8 +100,7 @@ class RecipeManager:
         if name in self.recipes:
             return f'ERRORE: {name} --> questa ricetta esiste già'
         self.recipes[name] = set(ingredients)
-        return {name : ingredients}
-#        return f'Ricetta {name} creata con successo'
+        return f'Ricetta {name} creata con successo'
     
     def add_ingredient(self, recipe_name, ingredient):
         if recipe_name not in self.recipes:
@@ -109,8 +108,7 @@ class RecipeManager:
         if ingredient in self.recipes[recipe_name]:
             return f'ERRORE: {ingredient} --> questo ingrediente esiste già nella ricetta {recipe_name}'
         self.recipes[recipe_name].add(ingredient)
-        return  
-#        return f'Ingrediente {ingredient} AGGIUNTO alla ricetta {recipe_name}'
+        return f'Ingrediente {ingredient} AGGIUNTO alla ricetta {recipe_name}'
     
     def remove_ingredient(self, recipe_name, ingredient):
         if recipe_name not in self.recipes:
@@ -118,7 +116,7 @@ class RecipeManager:
         if ingredient not in self.recipes[recipe_name]:
             return f'ERRORE: {ingredient} --> questo ingrediente non esiste nella ricetta {recipe_name}'
         self.recipes[recipe_name].remove(ingredient)
-#        return f'Ingrediente {ingredient} RIMOSSO dalla ricetta {recipe_name}'
+        return f'Ingrediente {ingredient} RIMOSSO dalla ricetta {recipe_name}'
     
     def update_ingredient(self, recipe_name, old_ingredient, new_ingredient):
         if recipe_name not in self.recipes:
@@ -127,7 +125,7 @@ class RecipeManager:
             return f'ERRORE: {old_ingredient} --> questo ingrediente non esiste nella ricetta {recipe_name}'
         self.recipes[recipe_name].remove(old_ingredient)
         self.recipes[recipe_name].add(new_ingredient)
-#        return f'Ingrediente {old_ingredient} sostituito con {new_ingredient} nella ricetta {recipe_name}'
+        return f'Ingrediente {old_ingredient} sostituito con {new_ingredient} nella ricetta {recipe_name}'
 
     def list_recipes(self):
         if not self.recipes:
@@ -137,17 +135,13 @@ class RecipeManager:
     def list_ingredients(self, recipe_name):
         if recipe_name not in self.recipes:
             return f'ERRORE: {recipe_name} questa ricetta non esiste'
-#        return {'ricetta': recipe_name, 'ingredienti': list(self.recipes[recipe_name])}
+        return {'ricetta': recipe_name, 'ingredienti': list(self.recipes[recipe_name])}
     
     def search_recipe_by_ingredient(self, ingredient):
         found_recipes = [name for name , ingredients in self.recipes.items() if ingredient in ingredients]
         if not found_recipes:
             return {'errore': f'nessuna ricetta trovata con l\'ingrediente {ingredient}'}
         return {'ricette_con_ingrediente': ingredient, 'ricette': found_recipes}
-    
-
-
- 	
 
 manager = RecipeManager()
 print(manager.create_recipe("Torta di mele", ["Farina", "Uova", "Mele"]))
@@ -155,3 +149,52 @@ print(manager.add_ingredient("Torta di mele", "Zucchero"))
 print(manager.list_recipes()) # ['Torta di mele']
 print(manager.list_ingredients("Torta di mele"))
 print(manager.search_recipe_by_ingredient("Uova"))
+"""
+
+
+# 1. Classe Base: Veicolo
+# Crea una classe base chiamata Veicolo con i seguenti attributi e metodi:
+ 
+# Attributi:
+
+#     marca (stringa)
+#     modello (stringa)
+#     anno (intero)
+
+# Metodi:
+
+#     __init__(self, marca, modello, anno): 
+# metodo costruttore che inizializza gli attributi marca, modello e anno.
+#     descrivi_veicolo(self): 
+# metodo che stampa una descrizione del veicolo nel formato "Marca: [marca], Modello: [modello], Anno: [anno]".
+
+# 2. Classe Derivata: Auto
+# Crea una classe derivata chiamata Auto che eredita dalla classe Veicolo e aggiunge i seguenti attributi e metodi:
+ 
+# Attributi:
+
+#     numero_porte (intero)
+
+# Metodi:
+
+#     __init__(self, marca, modello, anno, numero_porte): 
+# metodo costruttore che inizializza gli attributi della classe base e numero_porte.
+#     descrivi_veicolo(self): 
+# metodo che sovrascrive quello della classe base per includere anche il numero di porte nella descrizione, 
+# nel formato "Marca: [marca], Modello: [modello], Anno: [anno], Numero di porte: [numero_porte]".
+
+# 3. Classe Derivata: Moto
+# Crea una classe derivata chiamata Moto che eredita dalla classe Veicolo e aggiunge i seguenti attributi e metodi:
+ 
+# Attributi:
+
+#     tipo (stringa, ad esempio "sportiva", "cruiser", ecc.)
+
+# Metodi:
+
+#     __init__(self, marca, modello, anno, tipo): 
+# metodo costruttore che inizializza gli attributi della classe base e tipo.
+#     descrivi_veicolo(self): 
+# metodo che sovrascrive quello della classe base per includere anche il tipo di moto nella descrizione, 
+# nel formato "Marca: [marca], Modello: [modello], Anno: [anno], Tipo: [tipo]".
+
