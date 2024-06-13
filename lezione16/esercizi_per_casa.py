@@ -99,16 +99,19 @@ class RecipeManager:
     def create_recipe(self, name: str, ingredients):
         if name in self.recipes:
             return f'ERRORE: {name} --> questa ricetta esiste già'
-        self.recipes[name] = set(ingredients)
-        return f'Ricetta {name} creata con successo'
+        self.recipes[name] = list(ingredients)
+        #return f'Ricetta {name} creata con successo'
+        return {name: ingredients}
     
     def add_ingredient(self, recipe_name, ingredient):
         if recipe_name not in self.recipes:
             return f'ERRORE: {recipe_name} --> questa ricetta non esiste'
-        if ingredient in self.recipes[recipe_name]:
+        if ingredient  in self.recipes[recipe_name]:
             return f'ERRORE: {ingredient} --> questo ingrediente esiste già nella ricetta {recipe_name}'
-        self.recipes[recipe_name].add(ingredient)
-        return f'Ingrediente {ingredient} AGGIUNTO alla ricetta {recipe_name}'
+        else:
+            self.recipes[recipe_name].append(ingredient)
+        #return f'Ingrediente {ingredient} AGGIUNTO alla ricetta {recipe_name}'
+        return {recipe_name: self.recipes[recipe_name]}
     
     def remove_ingredient(self, recipe_name, ingredient):
         if recipe_name not in self.recipes:
@@ -124,7 +127,7 @@ class RecipeManager:
         if old_ingredient not in self.recipes[recipe_name]:
             return f'ERRORE: {old_ingredient} --> questo ingrediente non esiste nella ricetta {recipe_name}'
         self.recipes[recipe_name].remove(old_ingredient)
-        self.recipes[recipe_name].add(new_ingredient)
+        self.recipes[recipe_name].append(new_ingredient)
         return f'Ingrediente {old_ingredient} sostituito con {new_ingredient} nella ricetta {recipe_name}'
 
     def list_recipes(self):
@@ -143,6 +146,8 @@ class RecipeManager:
             return {'errore': f'nessuna ricetta trovata con l\'ingrediente {ingredient}'}
         return {'ricette_con_ingrediente': ingredient, 'ricette': found_recipes}
 
+ 	
+
 manager = RecipeManager()
 print(manager.create_recipe("Torta di mele", ["Farina", "Uova", "Mele"]))
 print(manager.add_ingredient("Torta di mele", "Zucchero"))
@@ -150,7 +155,6 @@ print(manager.list_recipes()) # ['Torta di mele']
 print(manager.list_ingredients("Torta di mele"))
 print(manager.search_recipe_by_ingredient("Uova"))
 """
-
 
 # 1. Classe Base: Veicolo
 # Crea una classe base chiamata Veicolo con i seguenti attributi e metodi:
@@ -284,12 +288,60 @@ moto.descrivi_veicolo()
 class Specie:
     def __init__(self, nome: str, popolazione_iniziale: int, tasso_crescita: float):
         self.nome = nome
-        self.popolazione_iniziale = popolazione_iniziale
+        self.popolazione = popolazione_iniziale
         self.tasso_crescita = tasso_crescita
 
     def cresci(self):
-        nuova_popolazione = self.popolazione_iniziale * (1 + self.tasso_crescita/100)
+        self.popolazione *= (1 + self.tasso_crescita / 100)
 
-    def anni_per_superare(self, altra_specie: 'Specie') -> int: 
+    def anni_per_superare(self, altra_specie: 'Specie') -> int:
         anni = 0
-        while self.popolazione_iniziale <=
+        popolazione_self = self.popolazione
+        popolazione_altra = altra_specie.popolazione
+        while popolazione_self <= popolazione_altra and anni < 1000:
+            popolazione_self *= (1 + self.tasso_crescita / 100)
+            popolazione_altra *= (1 + altra_specie.tasso_crescita / 100)
+            anni += 1
+        return anni if anni < 1000 else -1
+
+    def getDensita(self, area_kmq: float) -> int:
+        anni = 0
+        popolazione_self = self.popolazione
+        while popolazione_self / area_kmq < 1 and anni < 1000:
+            popolazione_self *= (1 + self.tasso_crescita / 100)
+            anni += 1
+        return anni if popolazione_self / area_kmq >= 1 else -1
+
+
+class BufaloKlingon(Specie):
+    def __init__(self, popolazione_iniziale: int, tasso_crescita: float):
+        super().__init__('Bufalo Klingon', popolazione_iniziale, tasso_crescita)
+
+
+class Elefante(Specie):
+    def __init__(self, popolazione_iniziale: int, tasso_crescita: float):
+        super().__init__('Elefante', popolazione_iniziale, tasso_crescita)
+
+
+# Creazione delle istanze delle specie
+bufalo_klingon = BufaloKlingon(100, 15)  # Crea un'istanza di BufaloKlingon con popolazione 100 e tasso di crescita 15%
+elefante = Elefante(10, 35)  # Crea un'istanza di Elefante con popolazione 10 e tasso di crescita 35%
+
+# Calcolo degli anni necessari per superare
+anni_necessari = elefante.anni_per_superare(bufalo_klingon)  # Calcola gli anni necessari affinché gli elefanti superino i bufali Klingon
+print(f"Anni necessari perché la popolazione di elefanti superi quella dei bufali Klingon: {anni_necessari}")
+
+# Calcolo della densità di popolazione per i Bufali Klingon
+anni_densita = bufalo_klingon.getDensita(1500)  # Calcola gli anni necessari per raggiungere una densità di 1 bufalo Klingon per km²
+print(f"Anni necessari per raggiungere una densità di 1 Bufalo Klingon per km quadrato: {anni_densita}")
+
+
+
+
+
+
+
+
+
+
+
