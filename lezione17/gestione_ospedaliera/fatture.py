@@ -30,3 +30,15 @@
 # ricevendo in input il codice identificativo del paziente da rimuovere, 
 # aggiornando poi il numero di fatture e il salario, richiamando il metodo get Fatture() e getSalary(). 
 # Stampare "Alla lista del Dottor cognome è stato rimosso il paziente {codice_identificativo}".
+
+from dottore import Dottore
+from paziente import Paziente
+
+class Fattura:
+    def __init__(self, patient:list[Paziente], doctor:Dottore):
+            self.__patient = patient
+            self.__doctor = doctor
+            self.__fatture = len(self.__patient)
+            self.__salary = 0
+        else:
+
