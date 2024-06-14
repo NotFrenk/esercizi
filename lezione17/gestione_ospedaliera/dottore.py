@@ -34,6 +34,63 @@
 # ùse il dottore risulta valido. In caso contrario, stampare "Doctor nome e cognome is not valid!".
 
 #     doctorGreet():
-# tale metodo richiama la funzione greet() della classe Persona. Poi, stampa il seguente saluto "Sono un medico {specializzazione}"
+# tale metodo richiama la funzione greet() della classe Persona. 
+# Poi, stampa il seguente saluto "Sono un medico {specializzazione}"
 from persona import Persona
 class Dottore(Persona):
+    def __init__(self, first_name, last_name, specialization, parcel):
+        super().__init__(first_name, last_name)
+
+        if isinstance(specialization, str):
+            self.__specialization = specialization
+        else:
+            self.__specialization = None
+            print('La specializazione inserita non è una stringa!')
+
+        if isinstance(parcel, float):
+            self.__parcel = parcel
+        else:
+            self.__parcel = None
+            print("La parcella inserita non è un float!")
+
+    def setSpecialization(self, specialization):
+        if isinstance(specialization, str):
+            self.__specialization = specialization
+        else:
+            print("La specializzazione inserita non è una stringa!")
+
+    def setParcel(self, parcel):
+        if isinstance(parcel, float):
+            self.__parcel = parcel
+        else:
+            print("La parcella inserita non è un float!")
+
+    def getSpecialization(self):
+        return self.__specialization
+    
+    def getParcel(self):
+        return self.__parcel
+    
+    def isAValidDoctor(self):
+        if self.getAge() is not None and self.getAge() > 30: 
+            print(f"Doctor {self.getName()} {self.getLastname()} is valid!")
+        else:
+            print(f"Doctor {self.getName()} {self.getLastname()} is not valid!")
+
+    def doctorGreet(self):
+        self.greet()
+        if self.__specialization is not None:
+            print(f"Sono un medico {self.__specialization}")
+
+
+# dottore = Dottore("Giulia", "Verdi", "Pediatra", 150.0)
+# dottore.greet()
+# dottore.setAge(35)
+# dottore.isAValidDoctor()
+# dottore.doctorGreet()
+# dottore.setSpecialization(123)  # Errore: La specializzazione inserita non è una stringa!
+# dottore.setParcel("200")       # Errore: La parcella inserita non è un float!
+# dottore.setSpecialization("Cardiologo")
+# dottore.setParcel(200.0)
+# print(dottore.getSpecialization())  # Cardiologo
+# print(dottore.getParcel())   
