@@ -36,9 +36,23 @@ from paziente import Paziente
 
 class Fattura:
     def __init__(self, patient:list[Paziente], doctor:Dottore):
-            self.__patient = patient
-            self.__doctor = doctor
-            self.__fatture = len(self.__patient)
-            self.__salary = 0
-        else:
+            self.patient = patient
+            self.doctor = doctor
+            self.fatture = int
+            self.salary = int
+            if self.doctor.isAValidDoctor():
+                self.fatture == len(patient)
+                self.salary == 0
+            else: 
+                self.patient = None
+                self.doctor = None
+                self.fatture = None
+                self.salary = None
+                print("Non è possibile creare la classe fattura poichè il dottore non è valido!")
+            
+    def getSalary(self):
+         return self.parcel * len(self.patient)
+    
+    def getFatture(self):
+         self.fatture == len(self.patient)
 
