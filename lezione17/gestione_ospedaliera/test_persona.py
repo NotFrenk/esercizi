@@ -36,3 +36,5 @@
 #   - Il calcolo corretto del salario e del numero di fatture.
 #   - L'aggiunta e la rimozione di pazienti dalla lista.
 
+import unittest
+from persona import Persona
