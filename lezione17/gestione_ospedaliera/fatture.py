@@ -51,8 +51,25 @@ class Fattura:
                 print("Non è possibile creare la classe fattura poichè il dottore non è valido!")
             
     def getSalary(self):
-         return self.parcel * len(self.patient)
+        return self.parcel * len(self.patient)
     
     def getFatture(self):
-         self.fatture == len(self.patient)
+        self.fatture == len(self.patient)
+        return self.fatture
+    
+    def addPatient(self, newPatient:Paziente):
+        self.patient.append(newPatient)
+        self.getFatture()
+        self.getSalary()
+        print(f"Alla lista del Dottor {self.last_name} è stato aggiunto il paziente {self.idCode}")
+
+    def removePatient(self, idCode:Paziente):
+        for paziente in self.patient:
+            if paziente.codice == idCode:
+                self.patient.remove(self.idCode)
+        self.getFatture()
+        self.getSalary()
+        print(f"Alla lista del Dottor {self.last_name} è stato rimosso il paziente {self.idCode}")
+        
+         
 
