@@ -17,13 +17,33 @@ def merge(list_1: list[int], list_2: list[int]) -> list[int]:
 
     for k in range(len(result)):
 
+        # if i >  len(list_1):
+        #     result [k:] = list_2 [j:]
+        #     break
+
+        # elif j > len(list_2):
+        #     result [k:] =list_1 [i:]
+        #     break
+
         if list_1[i] > list_2[j]:
             result[k] = list_2[j]
-            j+=1
+            if j == len(list_1):
+                print('sium')
+                break
+            else:
+                j+=1
+                print('gg')
+                break
 
         else:
             result[k]=list_1[i]
-            i+=1
+            if j == len(list_2):
+                print('2X sium')
+                break
+            else:
+                i+=1
+                print('2X gg')
+                
     return result
 
 
@@ -37,4 +57,3 @@ if __name__ == "__main__":
     input_list : list[int]= [0, 1, 2, 3, 4, 5, 6, 7]
 
     mergeSort(input_list=input_list)
-    
