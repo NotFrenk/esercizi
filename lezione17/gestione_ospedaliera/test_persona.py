@@ -34,7 +34,15 @@
 # - Scrivere test per verificare:
 #   - L'inizializzazione corretta della classe Fattura.
 #   - Il calcolo corretto del salario e del numero di fatture.
-#   - L'aggiunta e la rimozione di pazienti dalla lista.
+#   - L'aggiunta e la rimozione di pazienti dalla lista. 
 
 import unittest
 from persona import Persona
+
+class TestPersona(unittest.TestCase):
+
+    def setUp(self):
+        self.persona = Persona('Francisco', 'Felici')
+
+    def test_initialization(self):
+        self.assertEqual(self.persona.getName(), 'Francisco','Felici')
