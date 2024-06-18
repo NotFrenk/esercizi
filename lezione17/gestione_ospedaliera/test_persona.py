@@ -42,7 +42,22 @@ from persona import Persona
 class TestPersona(unittest.TestCase):
 
     def setUp(self):
-        self.persona = Persona('Francisco', 'Felici')
+        self.persona = Persona('ciao', 'Felici')
 
     def test_initialization(self):
-        self.assertEqual(self.persona.getName(), 'Francisco','Felici')
+        self.assertEqual(self.persona.getName(), 'Francisco', 'il nome è invalido')
+        self.assertEqual(self.persona.getLastname(), 'Felici')
+        self.assertEqual(self.persona.getAge(), 0)
+
+    def test_setName(self):
+        self.persona.setName('Francisco')
+        self.assertEqual(self.persona.getName(), 'Francisco')
+
+    def test_setLastName(self):
+        self.persona.setLastName('Felici')
+        self.assertEqual(self.persona.getLastname(), 'Felici')
+        
+    # def test_setAge(self):
+
+if __name__ == '__main__':
+    unittest.main()
