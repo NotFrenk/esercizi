@@ -43,4 +43,10 @@
 class Noleggio:
      def __init__(self, film_list:list[str]):
         self.film_list = film_list
-        self.rented_film:dict = {}
+        self.rented_film:dict[int:list[str]] = {}
+
+      def isAvaible(self, film:str):
+
+         if film 
+
+
