@@ -41,6 +41,45 @@
 # questo metodo deve stampare la lista dei film noleggiati dal cliente di cui viene specificato l'id.
 
 class Noleggio:
-     def __init__(self, film_list:list[str]):
-        self.film_list = film_list
-        self.rented_film:dict = {}
+   def __init__(self, film_list:list[str]):
+      self.film_list = film_list
+      self.rented_film:dict = {}
+        
+   def isAvaible(self, film):
+      if film in self.film_list:
+         print (f"Il film scelto è disponibile: {self.getTitle()}!")
+         return True
+      
+      else:
+         print(f"Il film scelto è disponibile: {self.getTitle()}!")
+         return False
+      
+   def rentAMovie(self, film, clientID):
+      if self.isAvaible(film):
+         self.film_list.remove(film)
+         if clientID not in self.rented_film:
+            self.rented_film[clientID] = []
+         self.rented_film[clientID].append(film)
+         print (f"Il cliente {self.clientId} ha noleggiato {self.getTitle()}!")
+
+      else:
+         print(f'Non è possibile nolegiare il film {self.getTitle()}!')
+
+   def giveBack(self, film, clientID, days):
+      if clientID in self.rented_film and film in self.rented_film[clientID]:
+         self.rented_film[clientID].remove(film)
+         self.film_list.append(film)
+         penale = film.calcolaPenaleRitardo(days)
+         print(f"Cliente: {clientID}! La penale da pagare per il film {self.getTitle} e' di {self.getPenale} euro!")
+
+   def printMovies(self):
+      print(f"{self.getTitle} - {self.getGenere} -")
+
+   def printRentMovies(self, clientID):
+      for film in self.rented_film[clientID]:
+         print (f"{film.getTitle()} - {film.getGenere()}")
+
+
+
+
+         
