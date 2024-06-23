@@ -56,4 +56,24 @@ class Pagamento:
     
 
 class PagamentoContanti(Pagamento):
+    def __init__(self, importo):
+        super().__init__(self)
+        self.set_importo(importo)
+
+    def dettagliPagamento(self):
+        return f'Pagamento in contanti di: €{self.get_importo:.2f}'
+    
+    def inPezziDa(self):
+        importo = self.get_importo()
+        pezzi = {500: 0, 200: 0, 100: 0, 50: 0, 20: 0, 10: 0, 5: 0,
+            2: 0, 1: 0, 0.50: 0, 0.20: 0, 0.10: 0, 0.05: 0, 0.01: 0}
+        for valore in pezzi:
+            pezzi[valore] = divmod(importo, valore)
+        
+        print(f'{self.get_importo():.2f} euro da pagare in contanti con:\n')
+        for valore, quantità in pezzi.items():
+            if quantità > 0:
+                tipo = 'banconota' if valore >= 5 else 'moneta' 
+                plural = 
+                print(f'')
     
