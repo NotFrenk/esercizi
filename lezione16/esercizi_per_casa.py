@@ -282,7 +282,8 @@ moto.descrivi_veicolo()
 # Hint: 
 # Loop incrementale che continua ad aggiornare la popolazione di entrambe le specie 
 # finché la popolazione di questa specie non supera quella dell'altra. 
-# Per evitare che le popolazioni crescano all'infinito, limitare il numero di anni a 1000. 
+# Per evitare che le popolazioni crescano all'infinito, limitare il numero di anni a 1000.
+ 
 
 
 class Specie:
@@ -303,7 +304,7 @@ class Specie:
             popolazione_altra *= (1 + altra_specie.tasso_crescita / 100)
             anni += 1
         return anni if anni < 1000 else -1
-
+    
     def getDensita(self, area_kmq: float) -> int:
         anni = 0
         popolazione_self = self.popolazione
@@ -334,14 +335,4 @@ print(f"Anni necessari perché la popolazione di elefanti superi quella dei bufa
 # Calcolo della densità di popolazione per i Bufali Klingon
 anni_densita = bufalo_klingon.getDensita(1500)  # Calcola gli anni necessari per raggiungere una densità di 1 bufalo Klingon per km²
 print(f"Anni necessari per raggiungere una densità di 1 Bufalo Klingon per km quadrato: {anni_densita}")
-
-
-
-
-
-
-
-
-
-
 

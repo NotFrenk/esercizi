@@ -10,7 +10,7 @@ def decoraton(func):
     return wrapper
 
 def ciao():
-    print ('ciao')
+    print ('hey')
 
 ciao = decoraton(ciao)
 
@@ -19,18 +19,23 @@ ciao()
 
 
 
-def decoraton(func):
 
-    def wrapper():
-        import time
 
-        start = time.time()
+def decorator_time(func):
 
-        func()
+     def wrapper(*args):
+         import time
 
-        print(f'time elapsed: {time.time()}')
+         start = time.time()
 
-    return wrapper
+         func(*args)
+
+         print(f'time elapsed: {time.time() - start}')
+
+     return wrapper
+
+
+
 
 def ciao():
     print ('ciao')
@@ -38,3 +43,4 @@ def ciao():
 ciao = decoraton(ciao)
 
 ciao()
+
