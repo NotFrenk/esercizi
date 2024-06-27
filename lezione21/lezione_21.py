@@ -10,27 +10,34 @@
 # print(next(prova_generatore))
 # print(next(prova_generatore))
 
-
+ 
 
 
 import time 
-from contextlib import contextmanager
+# from contextlib import contextmanager
 
-@contextmanager
-def contex_manager_decorator():
+# @contextmanager
+# def contex_manager_decorator():
 
-    start_time = time.time()
+#     start_time = time.time()
 
-    yield
+#     yield
 
-    end_tieme = time.time()
-    elapsed_time = end_tieme - start_time
+#     end_tieme = time.time()
+#     elapsed_time = end_tieme - start_time
 
-    print(f'{elapsed_time=}')
+#     print(f'{elapsed_time=}')
 
-@contex_manager_decorator
-def area_cerchio(raggio: float):
+# @contex_manager_decorator
+# def area_cerchio(raggio: float):
 
-    return raggio * raggio * 3.14
+#     return raggio * raggio * 3.14
 
-area_cerchio(1)
+# area_cerchio(1)
+
+import sys
+
+
+a =[]
+b=a
+print(sys.getrefcount(a))
