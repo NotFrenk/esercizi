@@ -88,7 +88,7 @@ class Triangolo(Forma):
         print(f'Ecco un {self.nome} avente base {self.lato} ed altezza {self.lato}!')
         for r in range(self.lato):
             for c in range(self.lato):
-                if r == 0 or r == self.lato -1 or c == 0 or c == self.lato -1:
+                if c == 0 or r == self.lato - 1 or r == c:
                     print('*', end=' ')
                 else:
                     print(' ', end=' ')
@@ -134,5 +134,5 @@ quadrato.render()
 rettangolo = Rettangolo(4,6)
 rettangolo.render()
 
-triangolo = Triangolo(4)
+triangolo = Triangolo(5)
 triangolo.render()
