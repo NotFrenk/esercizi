@@ -31,8 +31,8 @@ def sleep():
 if __name__ == '__main__':
     tic: float = time.time()
 
-    t1= Process(target=sleep)
-    t2=Process(target=sleep)
+    t1= Process(target=bubble_sort_v2)
+    t2=Process(target=bubble_sort_v2)
     t1.start()
     t2.start()
     t1.join()
