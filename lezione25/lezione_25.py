@@ -5,7 +5,7 @@ def sleep():
 
     print (f'sono nella funzione')
 
-    time.sleep(25)
+    time.sleep(60)
 
     print (f'sto uscendo dalla funzione')
 
@@ -16,8 +16,8 @@ if __name__ == '__main__':
     t2=Process(target=sleep)
     t1.start()
     t2.start()
-    # t1.join()
-    # t2.join()
+    t1.join()
+    t2.join()
     toc: float = time.time()
     time_elapsed: float = toc - tic
 
