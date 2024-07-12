@@ -15,6 +15,50 @@
 #     nel metodo codifica(testoInChiaro).
 
 
+from abc import ABC, abstractmethod
+
+class CodificatoreMessaggio(ABC):
+    @abstractmethod
+    def codifica(self, testoInChiaro:str):
+        pass 
+
+
+class DecodificatoreMessaggio(ABC):
+    @abstractmethod
+    def decodifica(self, testoCodificato:str):
+        pass
+
+
+class CifratoreAScorrimento(CodificatoreMessaggio, DecodificatoreMessaggio):
+    def __init__(self, chiave:int):
+        self.chiave=chiave
+        self.alfabeto = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] 
+
+    def sposta_carattere(self, carattere):
+        if carattere in self.alfabeto:
+            indice=(self.alfabeto.index(carattere) + self.chiave) % len(self.alfabeto)
+            return self.alfabeto[indice]
+        else:
+            return carattere
+
+        
+
+    def codifica(self, testoInChiaro):
+        return self.sposta_carattere(testoInChiaro)
+
+
+
+cifratore = CifratoreAScorrimento(3)
+testo_in_chiaro = "Ciao, come va?"
+testo_codificato = cifratore.codifica(testo_in_chiaro)
+print(f"Testo codificato: {testo_codificato}")  # Output: "Fldr, frph yd?"
+
+
+
+
+
+
+
 # Si crei una classe CifratoreACombinazione che implementa le classi astratte CodificatoreMessaggio e DecodificatoreMessaggio. 
 # Il costruttore dovrebbe ricevere un numero intero chiamato n. 
 # Si definisca il metodo codifica(testoInChiaro) così che il messaggio sia combinato n volte. 
@@ -58,23 +102,4 @@
 # - Decodifica: Il testo codificato viene decodificato.
 # - Stampa del testo decodificato: Il testo decodificato viene stampato.
 
-from abc import ABC, abstractmethod
 
-class CodificatoreMessaggio(ABC):
-    @abstractmethod
-    def codifica(self, testoInChiaro:str):
-        pass 
-
-
-class DecodificatoreMessaggio(ABC):
-    @abstractmethod
-    def decodifica(self, testoCodificato:str):
-        pass
-
-
-class CifratoreAScorrimento(CodificatoreMessaggio, DecodificatoreMessaggio):
-    def __init__(self, chiave:int):
-        self.chiave=chiave
-
-    def codifica(self, testoInChiaro:str):
-        ord
