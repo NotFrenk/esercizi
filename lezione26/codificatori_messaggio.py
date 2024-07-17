@@ -45,6 +45,7 @@ class CifratoreAScorrimento(CodificatoreMessaggio, DecodificatoreMessaggio):
 
     def codifica(self, testoInChiaro):
         return self.sposta_carattere(testoInChiaro)
+    
 
 
 
