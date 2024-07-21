@@ -85,3 +85,20 @@ numeri = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 print(determina_Se(numeri))
 """
 
+#5. 
+# Scrivi una funzione che accetti una lista di numeri e ritorni la somma dei numeri che sono divisibili sia per 2 che per 3.
+"""
+def somma_numeri(lista:list):
+
+    lista2 = []
+
+    for numero in lista:
+        if numero %2 == 0 and numero %3 == 0:
+            lista2.append(numero)
+    
+    return sum(lista2)
+
+numeri = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+print(somma_numeri(numeri))
+"""
+
