@@ -102,3 +102,36 @@ numeri = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 print(somma_numeri(numeri))
 """
 
+#6. 
+# Scrivi una funzione che accetti un dizionario di prodotti con i prezzi 
+# e restituisca un nuovo dizionario con solo i prodotti che hanno un prezzo superiore a 20, scontati del 10%.
+"""
+def prodotti(dizionario:dict[str:bool]):
+
+    dizionario2 = {}
+
+    for prodotto, prezzo in dizionario.items():
+        if prezzo > 20:
+            prezzo_scontato = prezzo * 0.90
+
+            dizionario2[prodotto]= prezzo_scontato
+
+    print(dizionario2)
+
+prodotti_prezzi = {
+    "pane": 15.0,
+    "latte": 22.0,
+    "formaggio": 30.0,
+    "vino": 25.0,
+    "mele": 10.0
+}
+
+prodotti(prodotti_prezzi)
+"""
+
+#7. 
+# Scrivi una funzione che prenda in input una lista di dizionari che rappresentano voti di studenti 
+# e aggrega i voti per studente in un nuovo dizionario.
+
+def aggrega_voti(lista_dict:list[dict]):
+    
