@@ -66,3 +66,22 @@ numeri = [1,2,3,4,5,6,7,8,9,10]
 fattore = 3
 numeri_filtrati = filtra_lista(numeri, fattore)
 """
+
+# 4. 
+# Scrivi una funzione che determina se un numero è 'magico'. 
+# Un numero è considerato magico se è divisibile per 4 ma non per 6.
+"""
+def determina_Se(lista:list):
+
+    new_list=[]
+
+    for numero in lista:
+        if numero % 4 == 0 and numero % 6 != 0:
+            new_list.append(numero)
+
+    return new_list if new_list else None
+    
+numeri = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+print(determina_Se(numeri))
+"""
+
