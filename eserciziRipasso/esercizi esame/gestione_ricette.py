@@ -34,6 +34,49 @@
 
 class RecipeManager:
     def __init__(self):
+        self.recipes = {}
 
-    
-    def create_recipe(name:str, ingredients:str):
+    def create_recipe(self, name, ingredients):
+        if name in self.recipes:
+            return "Errore: La ricetta esiste già."
+        self.recipes[name] = ingredients
+        return {name: self.recipes[name]}
+
+    def add_ingredient(self, recipe_name, ingredient):
+        if recipe_name not in self.recipes:
+            return "Errore: La ricetta non esiste."
+        if ingredient in self.recipes[recipe_name]:
+            return "Errore: L'ingrediente esiste già."
+        self.recipes[recipe_name].append(ingredient)
+        return {recipe_name: self.recipes[recipe_name]}
+
+    def remove_ingredient(self, recipe_name, ingredient):
+        if recipe_name not in self.recipes:
+            return "Errore: La ricetta non esiste."
+        if ingredient not in self.recipes[recipe_name]:
+            return "Errore: L'ingrediente non è presente."
+        self.recipes[recipe_name].remove(ingredient)
+        return {recipe_name: self.recipes[recipe_name]}
+
+    def update_ingredient(self, recipe_name, old_ingredient, new_ingredient):
+        if recipe_name not in self.recipes:
+            return "Errore: La ricetta non esiste."
+        if old_ingredient not in self.recipes[recipe_name]:
+            return "Errore: L'ingrediente non è presente."
+        index = self.recipes[recipe_name].index(old_ingredient)
+        self.recipes[recipe_name][index] = new_ingredient
+        return {recipe_name: self.recipes[recipe_name]}
+
+    def list_recipes(self):
+        return list(self.recipes.keys())
+
+    def list_ingredients(self, recipe_name):
+        if recipe_name not in self.recipes:
+            return "Errore: La ricetta non esiste."
+        return self.recipes[recipe_name]
+
+    def search_recipe_by_ingredient(self, ingredient):
+        result = {name: ingredients for name, ingredients in self.recipes.items() if ingredient in ingredients}
+        if not result:  
+            return "Errore: Nessuna ricetta contiene l'ingrediente."
+        return result
