@@ -30,7 +30,8 @@ print(verifica_accesso("manager", "wrongpassword", True))
 
 
 
-#Scrivi una funzione che moltiplica tutti i numeri interi di una lista che sono minori di un dato valore intero definito threshold.
+#Scrivi una funzione che moltiplica tutti i numeri interi di una lista 
+# che sono minori di un dato valore intero definito threshold.
 
 """
 def moltiplica_numeri(numbers: list[int], threshold: int) -> int:
@@ -171,7 +172,7 @@ class Lavatrice(Elettrodomestico):
 #       Trova e restituisce tutti i contatti che contengono un determinato numero di telefono. 
 #       Restituisce una lista di tutte le chiavi all'interno del dizionario contacts che hanno il numero specificato tra i valori 
 #       oppure il messaggio di errore "Nessun contatto trovato con questo numero di telefono." se nessun contatto contiene il numero di telefono.
-
+"""
 class ContactManager:
     def __init__(self):
         self.contacts: dict[str, list[str]] = {}
@@ -244,6 +245,7 @@ print(manager.update_phone_number("Bob", "987654321", "999999999"))
 
 # Ricerca di contatti per numero di telefono
 print(manager.search_contact_by_phone_number("999999999"))
+"""
 
         
 
