@@ -7,13 +7,13 @@ import ast
 lista_1 = "['mario', 'gino', 'lucrezia']"
 lista_2 = ['mario', 'gino', 'lucrezia']
 
-def SerializzaLista(lista_1):
+def DeserializzaLista (lista_1):
    return ast.literal_eval(lista_1)
 
-print(type(SerializzaLista(lista_1)))
-print(SerializzaLista(lista_1))
+print(type(DeserializzaLista(lista_1)))
+print(DeserializzaLista(lista_1))
 
-def DeserializzaLista(lista_2):
+def SerializzaLista (lista_2):
    return str(lista_2)
 
 print(type(DeserializzaLista(lista_2)))
