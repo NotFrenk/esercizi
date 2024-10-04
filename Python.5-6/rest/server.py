@@ -41,14 +41,21 @@ def GestisciAddCittadino():
         #prima di tutto verifico utente, password e privilegio 
         #dove utente e password me l'ha inviato il client
         #mentre il privilegio lo vado a leggere nel mio file  (utenti.json)
+      user = jsonReq["username"]
+      password = jsonReq["password"]
 
-      codice_fiscale = jsonReq.get('codFiscale')
-      if codice_fiscale in cittadini:
-         return jsonify({"Esito": "001", "Msg": "Cittadino già esistente"}), 200
-      else:
-         cittadini[codice_fiscale] = jsonReq
-         JsonSerialize(cittadini, file_path) 
-         return jsonify({"Esito": "000", "Msg": "Cittadino aggiunto con successo"}), 200
+      if user in utenti\
+         and utenti[user]["password"] == password\
+         and utenti[user]["privilegi"] == "w":
+
+
+         codice_fiscale = jsonReq["datiCittadino"]["codFiscale"]
+         if codice_fiscale in cittadini:
+            return jsonify({"Esito": "001", "Msg": "Cittadino già esistente"}), 200
+         else:
+            cittadini[codice_fiscale] = jsonReq["datiCittadini"]
+            JsonSerialize(cittadini, file_path) 
+            return jsonify({"Esito": "000", "Msg": "Cittadino aggiunto con successo"}), 200
    else:
       return jsonify({"Esito": "002", "Msg": "Formato richiesta non valido"}), 200
 
