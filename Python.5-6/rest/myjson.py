@@ -1,22 +1,16 @@
 import json
-import jsonschema
-import requests
-import sys
 
-def SerializaJson(dData,file_path):
-   try:
-      with open(file_path, 'w') as file:
-         json.dump(dData,file)
-         return True
-   except Exception as e:
-        print(f"Errore durante la serializzazione: {e}")
-        return False
+#Serializzare 
+def JsonSerialize(dData, sFile)->int:
+    if type(dData) is not dict:
+        return 1
+    try:
+        with open(sFile, "w") as write_file:
+            json.dump(dData, write_file,indent=4)
+        return 0
+    except:
+        return 2
 
-
-def DeserializeJson(file_path):
-   try:
-        with open(file_path, 'r') as file:
-           return json.load(file)
-   except Exception as e:
-        print(f"Errore durante la deserializzazione: {e}")
-        return None
+def JsonDeserialize(sFile)->dict:
+    with open(sFile, "r") as read_file:
+        return json.load(read_file)

@@ -1,0 +1,17 @@
+{
+   "admincomune@comune.zagarolo.it":{
+      "password": "root01",
+      "privilegi":"w",
+      "note":"amministratore del sistema"
+   },
+   "maria@comune.zagarolo.it":{
+      "password": "root02",
+      "privilegi":"w",
+      "note":"sportello 1"
+   },
+   "gianni@comune.zagarolo.it":{
+      "password": "root03",
+      "privilegi":"r",
+      "note":"sportello 2"
+   }
+}
