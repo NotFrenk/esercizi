@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from myjson import JsonDeserialize, JsonSerialize
 
+
 api = Flask(__name__)
 
 
@@ -16,7 +17,7 @@ utenti = JsonDeserialize(file_path_users)
 def GestisciLogin():
    content_type = request.headers.get('Content-Type')
    if content_type == 'application/json':
-        #{"username":"pippo", "password":"pippo"}
+      #{"username":"pippo", "password":"pippo"}
       jsonReq = request.json
       sUsernameInseritoDalClient = jsonReq["username"]
       if sUsernameInseritoDalClient in utenti:
@@ -124,4 +125,4 @@ def elimina_cittadino():
    else:
       return jsonify({"Esito": "002", "Msg": "Formato richiesta non valido"}), 200
 
-api.run(host="127.0.0.1", port=8080)
+api.run(host="127.0.0.1", port=8080, ssl_context="adhoc")

@@ -7,32 +7,27 @@
     },
     "dctnst34b56h501a": {
         "nome": "gianni",
-        "cognome": "de martino",
+        "cognome": "franco",
         "data nascita": "21/05/1980",
         "codice fiscale": "dctnst34b56h501u"
     },
     "dctnst34b56h503e": {
         "nome": "maria",
-        "cognome": "de martino",
+        "cognome": "rossi",
         "data nascita": "21/05/1980",
         "codice fiscale": "dctnst34b56h501u"
     },
     "dctnst34b56h502w": {
         "nome": "silvia",
-        "cognome": "de martino",
+        "cognome": "pino",
         "data nascita": "21/05/1980",
         "codice fiscale": "dctnst34b56h501u"
     },
     "aaaaa": {
         "nome": "Paolo",
-        "cognome": "Rossi",
+        "cognome": "peppe",
         "data nascita": "24/02/1990",
         "codice fiscale": "aaaaa"
-    },
-    "asddsa": {
-        "nome": "adsadads",
-        "cognome": "asdadsads",
-        "data nascita": "dsaadsads",
-        "codice fiscale": "asddsa"
     }
+
 }

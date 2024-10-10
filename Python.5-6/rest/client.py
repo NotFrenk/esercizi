@@ -1,6 +1,6 @@
 import requests, json, sys
 
-base_url = "http://127.0.0.1:8080"
+base_url = "https://127.0.0.1:8080"
 
 
 def GetDatiCittadino():
@@ -26,13 +26,13 @@ def GetCodicefiscale():
 def EseguiOperazione(iOper, sServizio, dDatiToSend):
     try:
         if iOper == 1:
-            response = requests.post(sServizio, json=dDatiToSend)
+            response = requests.post(sServizio, json=dDatiToSend, verify=False)
         if iOper == 2:
-            response = requests.get(sServizio)
+            response = requests.get(sServizio, verify=False)
         if iOper == 3:
-            response = requests.put(sServizio, json=dDatiToSend)
+            response = requests.put(sServizio, json=dDatiToSend, verify=False)
         if iOper == 4:
-            response = requests.delete(sServizio, json=dDatiToSend)
+            response = requests.delete(sServizio, json=dDatiToSend, verify=False)
 
         if response.status_code==200:
             print(response.json())
@@ -56,16 +56,17 @@ def EffettuaPrimoLogin():
     try:
         #manda i dati al server
         api_url = base_url + "/login"
-        response = requests.post(api_url,json=jsonRequest)
+        response = requests.post(api_url,json=jsonRequest, verify=False)
         
         #processa la risposta del server
         if response.status_code==200:
-            jsonResponse = response.json
+            jsonResponse = response.json()
             if jsonResponse["Esito"]=="000":
                 sPrivilegio = jsonResponse["Privilegio"]
                 iPrimoLoginEffettuato = 1
     except:
         print("Attenzione, problemi di comunicazione con il server")
+        iPrimoLoginEffettuato = 0
 
 
 print("Benvenuti al Comune - sede locale")
@@ -74,7 +75,7 @@ sPassword = ""
 sPrivilegio = ""
 iPrimoLoginEffettuato = 0 
 while iPrimoLoginEffettuato == 0:
-    iPrimoLoginEffettuato = EffettuaPrimoLogin()
+    EffettuaPrimoLogin()
 
 iFlag = 0
 while iFlag==0:
@@ -125,3 +126,4 @@ while iFlag==0:
 
     else:
         print("Operazione non disponibile, riprova.")
+ 
