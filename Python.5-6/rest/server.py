@@ -1,40 +1,63 @@
 from flask import Flask, jsonify, request
 from myjson import JsonDeserialize, JsonSerialize
+import sys
+import dbclient as db
 
 
 api = Flask(__name__)
 
+cur = db.connect()
+if cur is None:
+	print("Errore connessione al DB")
+	sys.exit()
 
-file_path = "anagrafe.json"
-cittadini = JsonDeserialize(file_path)
+# file_path = "anagrafe.json"
+# cittadini = JsonDeserialize(file_path)
 
-file_path_users = "utenti.json"
-utenti = JsonDeserialize(file_path_users)
+# file_path_users = "utenti.json"
+# utenti = JsonDeserialize(file_path_users)
 
 
 
 @api.route('/login', methods=['POST'])
 def GestisciLogin():
+   global cur
    content_type = request.headers.get('Content-Type')
    if content_type == 'application/json':
       #{"username":"pippo", "password":"pippo"}
       jsonReq = request.json
       sUsernameInseritoDalClient = jsonReq["username"]
-      if sUsernameInseritoDalClient in utenti:
-         sPasswordInseritaDalClient = jsonReq["password"]
-         if sPasswordInseritaDalClient == utenti[sUsernameInseritoDalClient]["password"]:
-            sPriv = utenti[sUsernameInseritoDalClient]["privilegi"]
-            return jsonify({"Esito": "000", "Msg": "Utente registrato", "Privilegio":sPriv}), 200
-         else:
-               return jsonify({"Esito": "001", "Msg": "Credenziali errate"})
+      sPasswordInseritaDalClient = jsonReq["password"]
+      sQuery = "select privilegi from utenti where mail='" + sUsernameInseritoDalClient + "' and password= '"+ sPasswordInseritaDalClient +"';"
+      print(sQuery)
+      iNumRow = db.read_in_db(cur,sQuery)
+      if iNumRow ==1:
+         lRow = db.read_next_row(cur)
+         sPriv = lRow[1][0]
+         print("privilegio: " + sPriv)
+         return jsonify({"Esito": "000", "Msg": "Utente registrato", "Privilegio":sPriv}), 200
       else:
          return jsonify({"Esito": "001", "Msg": "Credenziali errate"})
    else:
       return jsonify({"Esito": "002", "Msg": "Formato richiesta errato"}) 
+
+
+   #     if sUsernameInseritoDalClient in utenti:
+   #        sPasswordInseritaDalClient = jsonReq["password"]
+   #        if sPasswordInseritaDalClient == utenti[sUsernameInseritoDalClient]["password"]:
+   #           sPriv = utenti[sUsernameInseritoDalClient]["privilegi"]
+   #         return jsonify({"Esito": "000", "Msg": "Utente registrato", "Privilegio":sPriv}), 200
+   #       else:
+   #             return jsonify({"Esito": "001", "Msg": "Credenziali errate"})
+   #    else:
+   #       return jsonify({"Esito": "001", "Msg": "Credenziali errate"})
+   # else:
+   #    return jsonify({"Esito": "002", "Msg": "Formato richiesta errato"}) 
                                              
 
 @api.route('/add_cittadino', methods=['POST'])
 def GestisciAddCittadino():
+   global cur
    content_type = request.headers.get('Content-Type')
    if content_type == 'application/json':
       jsonReq = request.json
@@ -42,10 +65,17 @@ def GestisciAddCittadino():
         #prima di tutto verifico utente, password e privilegio 
         #dove utente e password me l'ha inviato il client
         #mentre il privilegio lo vado a leggere nel mio file  (utenti.json)
-      user = jsonReq["username"]
-      password = jsonReq["password"]
+      codice_fiscale = jsonReq.get('codFiscale')
+      nome = jsonReq.get('nome')
+      cognome = jsonReq.get('cognome')
+      dataNascita = jsonReq.get('dataNascita')
+      
 
-      if user in utenti\
+      sQuery  = "inser info anagrafe (codive_fiscale,nome,cognome,data_nascita) values("="'"+ codice_fiscale + "','" + nome + "','" + cognome + "','" + data_nascita + "'):"
+      print(sQuery)
+      iRei = db.write_in_db(cur, sQuery)
+      if iRei == -2:
+         return jsonify({"Esito": "001", "Msg": "Cittadino già esistente"}), 200
          and utenti[user]["password"] == password\
          and utenti[user]["privilegi"] == "w":
 
