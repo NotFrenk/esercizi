@@ -65,28 +65,22 @@ def GestisciAddCittadino():
         #prima di tutto verifico utente, password e privilegio 
         #dove utente e password me l'ha inviato il client
         #mentre il privilegio lo vado a leggere nel mio file  (utenti.json)
+
+
       codice_fiscale = jsonReq.get('codFiscale')
       nome = jsonReq.get('nome')
       cognome = jsonReq.get('cognome')
       dataNascita = jsonReq.get('dataNascita')
-      
-
-      sQuery  = "inser info anagrafe (codive_fiscale,nome,cognome,data_nascita) values("="'"+ codice_fiscale + "','" + nome + "','" + cognome + "','" + data_nascita + "'):"
+      sQuery = "insert into anagrafe(codice_fiscale,nome,cognome,data_nascita) values ("
+      sQuery += "'" + codice_fiscale + "','" + nome + "','" + cognome + "','" + dataNascita + "');"
       print(sQuery)
-      iRei = db.write_in_db(cur, sQuery)
-      if iRei == -2:
+      iRet = db.write_in_db(cur,sQuery)
+      if iRet == -2:
          return jsonify({"Esito": "001", "Msg": "Cittadino già esistente"}), 200
-         and utenti[user]["password"] == password\
-         and utenti[user]["privilegi"] == "w":
-
-
-         codice_fiscale = jsonReq["datiCittadino"]["codFiscale"]
-         if codice_fiscale in cittadini:
-            return jsonify({"Esito": "001", "Msg": "Cittadino già esistente"}), 200
-         else:
-            cittadini[codice_fiscale] = jsonReq["datiCittadini"]
-            JsonSerialize(cittadini, file_path) 
-            return jsonify({"Esito": "000", "Msg": "Cittadino aggiunto con successo"}), 200
+      elif iRet == -1:
+         return jsonify({"Esito": "002", "Msg": "Formato richiesta non valido"}), 200
+      else:
+         return jsonify({"Esito": "000", "Msg": "Cittadino aggiunto con successo"}), 200
    else:
       return jsonify({"Esito": "002", "Msg": "Formato richiesta non valido"}), 200
 
@@ -94,18 +88,18 @@ def GestisciAddCittadino():
 
 
 @api.route('/read_cittadino/<codice_fiscale>', methods=['GET'])
-def read_cittadino(codice_fiscale):
+def read_cittadino(codice_fiscale,username,password):
 
     #prima di tutto verifico utente, password e privilegio 
     #dove utente e password me l'ha inviato il client
     #mentre il privilegio lo vado a leggere nel mio file  (utenti.json)
-
+   sQuery = "select * from cittadini where codice_fiscale='" + codice_fiscale + "';"
+    
    cittadino = cittadini.get(codice_fiscale)
    if cittadino:
       return jsonify({"Esito": "000", "Msg": "Cittadino trovato", "Dati": cittadino}), 200
    else:
       return jsonify({"Esito": "001", "Msg": "Cittadino non trovato"}), 200
-
 
 
 

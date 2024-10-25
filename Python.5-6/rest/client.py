@@ -14,8 +14,7 @@ def GetDatiCittadino():
         "dataNascita": dataN, 
         "codFiscale": codF,
     }
-    utente = {"username":sUsername, "password":sPassword, "daticittadino": datiCittadino}
-    return utente
+    return datiCittadino
 
 
 def GetCodicefiscale():
