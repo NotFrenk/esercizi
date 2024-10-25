@@ -89,17 +89,25 @@ def GestisciAddCittadino():
 
 @api.route('/read_cittadino/<codice_fiscale>', methods=['GET'])
 def read_cittadino(codice_fiscale,username,password):
+   global cur 
 
-    #prima di tutto verifico utente, password e privilegio 
-    #dove utente e password me l'ha inviato il client
-    #mentre il privilegio lo vado a leggere nel mio file  (utenti.json)
-   sQuery = "select * from cittadini where codice_fiscale='" + codice_fiscale + "';"
+   sQuery = "select * from utenti;"
+   iNumRows = db.read_in_db(cur,sQuery)
+   for ii in range(0,iNumRows):
+      myrow = db.read_next_row(cur)
+      print(myrow)
+
+
+   #  #prima di tutto verifico utente, password e privilegio 
+   #  #dove utente e password me l'ha inviato il client
+   #  #mentre il privilegio lo vado a leggere nel mio file  (utenti.json)
+   # sQuery = "select * from cittadini where codice_fiscale='" + codice_fiscale + "';"
     
-   cittadino = cittadini.get(codice_fiscale)
-   if cittadino:
-      return jsonify({"Esito": "000", "Msg": "Cittadino trovato", "Dati": cittadino}), 200
-   else:
-      return jsonify({"Esito": "001", "Msg": "Cittadino non trovato"}), 200
+   # cittadino = cittadini.get(codice_fiscale)
+   # if cittadino:
+   #    return jsonify({"Esito": "000", "Msg": "Cittadino trovato", "Dati": cittadino}), 200
+   # else:
+   #    return jsonify({"Esito": "001", "Msg": "Cittadino non trovato"}), 200
 
 
 
