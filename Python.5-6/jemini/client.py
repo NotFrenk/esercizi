@@ -2,11 +2,12 @@ import requests, json, sys
 
 sModelOld = "gemini-1,5-flash-latest"
 sModel = "gemini-1,5-pro-exp-0827"
+base_url = "https://generativelanguage.googleapis.com/v1beta/models/" + sModel + ":generateContent?key="
 
 
 sGoogleApiKey = "AIzaSyBIFNV_q68_Au1ov4eZg1hRxdd5Ttx9agY"
 
-base_url = ""
+api_url = base_url + sGoogleApiKey
 
 sUsername=""
 sPassword = ""
