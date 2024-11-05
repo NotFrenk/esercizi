@@ -25,7 +25,14 @@ while ris != "3":
         if (res == -1):
             print("Query non valida")
         else:
-            print("Query eseguita")
+            if res ==0:
+                print("nessun record\n")
+            else:
+                lRecord=db.read_next_row(cur)
+                while lRecord [0]==0:
+                    print(lRecord)
+                    lRecord = db.read_next_row(cur)
+                    
 
     else:
         print("\n Operazione non valida!!")
