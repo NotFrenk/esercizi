@@ -15,7 +15,7 @@ sPassword = ""
 def GetDatiCittadino():
     nome = input("Inserisci il nome: ")
     cognome = input("Inserisci il cognome: ")
-    dataN = input("Inserisci la data di nascita (gg/mm/aaaa): ")
+    dataN = input("Inserisci la data di nascita (gg/mm/aaaa): ") 
     codF = input("Inserisci il codice fiscale: ")
     datiCittadino = {
         "nome": nome, 
