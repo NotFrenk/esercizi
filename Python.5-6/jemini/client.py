@@ -7,7 +7,7 @@ base_url = "https://generativelanguage.googleapis.com/v1beta/models/" + sModel +
 
 sGoogleApiKey = "AIzaSyBIFNV_q68_Au1ov4eZg1hRxdd5Ttx9agY"
 
-api_url = base_url + sGoogleApiKey
+api_url = base_url + sGoogleApiKey 
 
 sUsername=""
 sPassword = ""
