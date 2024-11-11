@@ -21,8 +21,8 @@ def getbooks():
     return jsonify(books)
 
 @app.route('/api/books/<int:bookid>')
-def getbook(book_id):
-    book = next((book for book in books if book["id"] == book_id), None)
+def getbook(bookid):
+    book = next((book for book in books if book["id"] == bookid), None)
     if book:
         return jsonify(book)
     return jsonify({"error": "Libro non trovato"}), 404
