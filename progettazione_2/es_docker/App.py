@@ -1,6 +1,6 @@
 from flask import Flask,jsonify
 
-app = Flask(name)
+app = Flask(__name__)
 
 books = [
     {"id": 1, "title": "Il Nome della Rosa", "author": "Umberto Eco"},
@@ -21,11 +21,11 @@ def getbooks():
     return jsonify(books)
 
 @app.route('/api/books/<int:bookid>')
-def getbook(bookid):
-    book = next((book for book in books if book["id"] == bookid), None)
+def getbook(book_id):
+    book = next((book for book in books if book["id"] == book_id), None)
     if book:
         return jsonify(book)
     return jsonify({"error": "Libro non trovato"}), 404
 
-if name == '__main':
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
