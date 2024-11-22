@@ -1,14 +1,13 @@
 import './NavBar.css'
+import Link from './Link'
 function NavBar() {
    return(
       <ul>
-         <li><a href="#"> Ciao </a></li>
-         <li><a href="#"> Ciao </a></li>
-         <li><a href="#"> Ciao </a></li>
-         <li><a href="#"> Ciao </a></li>
-         <li><a href="#"> Ciao </a></li>
-         <li><a href="#"> Ciao </a></li>
-         <li><a href="#"> Ciao </a></li>
+         <li><Link></Link></li>
+         <li><Link></Link></li>
+         <li><Link></Link></li>
+         <li><Link></Link></li>
+         <li><Link></Link></li>
       </ul>
    )
 }
