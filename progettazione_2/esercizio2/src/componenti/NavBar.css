@@ -1,3 +1,22 @@
 ul li {
    color: cadetblue;
 }
+
+.bordoarrotondato {
+   height: 300px;
+   border-radius: 30px;
+}
+
+#boxe {
+   height: 300px;
+   width: 300px;
+   background-color: red;
+}
+
+.rounded {
+   border-radius: 30px;
+}
+
+.rotola {
+   rotate: 10deg;
+}
