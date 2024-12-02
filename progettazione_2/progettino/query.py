@@ -34,27 +34,6 @@ def read_db(connection, query):
 
 
 
-def query_interactive():
-    print("\n--- Modalità Query Personalizzata ---")
-    print("Scrivi la tua query SQL : ")
-    while True:
-        custom_query = input("SQL> ")
-        if custom_query.lower() == 'exit':
-            print("Uscita dalla modalità interattiva.")
-            break
-        try:
-            cursor = connection.cursor()
-            cursor.execute(custom_query)
-            rows = cursor.fetchall()
-            return rows
-        except Exception as e:
-            print(f"Errore nell'esecuzione della query: {e}")
-
-
-
-
-
-
 app = Flask(__name__)
 
 @app.route('/')
@@ -98,12 +77,24 @@ def cita_apitalia():
         HAVING COUNT(DISTINCT l.aeroporto) > 1""")
     return jsonify({'risultato' : retQuery})
 
-@app.route('/personalizata')
+@app.route('/personalizzata', methods=['POST'])
 def crea_query():
-    pass
+    try:
+        data = request.get_json()
+        query = data.get('query')
+
+        if not query:
+            return jsonify({'errore':'nessuna query fornita'}), 400
+        
+        retQuery = read_db(connection, query)
+
+        return jsonify({'Risultato': retQuery})
+    except Exception as e:
+        return jsonify({'errore': str(e)}), 500
+
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5002)
+    app.run(host='0.0.0.0', port=5001)
 
 
 
