@@ -2,6 +2,6 @@ FROM python:3.9-slim
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-COPY app.py .
+COPY query.py .
 EXPOSE 5001
-CMD ["python", "app.py"]
+CMD ["python", "query.py"]

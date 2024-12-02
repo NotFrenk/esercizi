@@ -1,6 +1,5 @@
 
 import psycopg2
-import time 
 from flask import Flask, jsonify, request
 
 host = "localhost"
@@ -40,7 +39,7 @@ app = Flask(__name__)
 def home():
     return """
     <h1>Benvenuto nella nostra libreria!</h1>
-    <p>Usa <a href='/aeroporti'>/aeroporti</a> per visualizzare tutti gli aeroporti</p>
+    <p>Usa <a href='/aeroporti'> aeroporti</a> per visualizzare tutti gli aeroporti</p>
     <p>Usa <a href='/vol.sopra.med'>/vol.sopra.med</a> per visualizzare i voli con durata sopra la media per compagnia</p>
     <p>Usa <a href='/serv.api'>/serv.api</a> per visualizzare le città servite da più di un aeroporto per Apitalia</p>
     <p>Usa <a href='/personalizata'>/personalizata</a> per Scrivere una query personalizzata</p>
