@@ -1,4 +1,4 @@
-function Card() {
+/*function Card() {
     
     const img = "https://i.pinimg.com/originals/ee/87/d8/ee87d8be406a16e8649217baa79505c2.jpg"
     const img2 = "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/zoro-bounty-wanted-poster-one-piece-roronoa-zoro.jpg"
@@ -47,4 +47,21 @@ function Card() {
         </div>
     )
 }
-export default Card
+export default Card*/
+
+
+function Card ({titolo,imgUrl,descrizione,isVisit}){
+    return(
+        <div>
+            <img src={imgUrl} alt=""></img>
+            <div>
+
+            </div>
+            <h2>{titolo}</h2>
+            <p>{descrizione}</p>
+            {isVisit && <span><b>Visitato</b></span>}
+            {!isVisit && <span><b>Non visitato</b></span>}
+        </div>
+    )
+}
+export default Card;

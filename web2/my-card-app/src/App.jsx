@@ -2,14 +2,34 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Card from './Component/card'
+import Card from './componenti/Card'
+
+function alertClik(){
+  alert("MA CIAOO!!")
+}
+
+function heandleChange(e){
+  console.log(e.target.value)
+}
+
+function heandleSubmit(e){
+  e.preventDefoult
+  console.log(e)
+}
+
 
 function App() {
   const [count, setCount] = useState(0)
+  const cities=[
+    {id:1,
+      name:"Tokyo",
+      desc:"Hello there",
+      imgUrl: "https://www.giapponepertutti.it/demo/wp-content/uploads/2024/07/Depositphotos_563013432_S.jpg",
+      isVisitato:true
+    }
+  ]
 
-  return (
-    <>
-    <Card
+/*<Card
       isVisitato = {true}
       titolo = "Tokyo"
       descrizione = "Hello there"
@@ -34,7 +54,39 @@ function App() {
     descrizione = "-------------------------"
     image = "https://images.unsplash.com/photo-1733036016861-0541eb76dac5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3MHx8fGVufDB8fHx8fA%3D%3D"
     >
-    </Card>
+    </Card>*/
+
+  return (
+    <>
+      <div>
+        {cities.map((city) => (
+            <Card key={city.id}
+                  titolo = {city.name}
+                  imgUrl = {city.imgUrl}
+                  isVisitato={city.isVisitato}>
+                  {city.descrizione}
+            </Card>
+            )
+          )
+        }
+
+        {cities.filter((city) => city.isVisit).map((city) =>(
+            <Card key={city.id}
+                  titolo = {city.name}
+                  imgUrl = {city.imgUrl}
+                  isVisitato={city.isVisit}
+                  descrizione={city.desc}>
+            </Card>
+            )
+          )
+        }
+      </div>
+    
+    
+
+
+
+
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -48,6 +100,13 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <button onClick={(alertClik)}>
+          alert
+        </button>
+        <input type='text' oneChange={heandleChange}/>
+        <form onSubmit={heandleSubmit}>
+          <button type='submit'>Cliccami!!!</button>
+        </form>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
