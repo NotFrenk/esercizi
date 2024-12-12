@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Card from './componenti/Card'
 import Todolist from './componenti/Todolist'
+import UserProfile from './componenti/UserProfile'
 
 function alertClik(){
   alert("MA CIAOO!!")
@@ -82,10 +83,10 @@ function App() {
           )
         }
       </div>
-    
-    
 
         <Todolist></Todolist>
+
+        <UserProfile></UserProfile>
 
 
       <div>
