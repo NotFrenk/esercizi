@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Card from './componenti/Card'
+import Todolist from './componenti/Todolist'
 
 function alertClik(){
   alert("MA CIAOO!!")
@@ -84,7 +85,7 @@ function App() {
     
     
 
-
+        <Todolist></Todolist>
 
 
       <div>
@@ -103,7 +104,7 @@ function App() {
         <button onClick={(alertClik)}>
           alert
         </button>
-        <input type='text' oneChange={heandleChange}/>
+        <input type='text' onChange={heandleChange}/>
         <form onSubmit={heandleSubmit}>
           <button type='submit'>Cliccami!!!</button>
         </form>
