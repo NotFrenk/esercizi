@@ -101,17 +101,25 @@ def cita_apitalia():
 
 @app.route('/personalizzata', methods=['POST'])
 def crea_query():
+    print("Metodo ricevuto:", request.method)
     try:
         data = request.get_json()
         query = data.get('query')
+        print("Ricevuto:", data)
+        print("Query:", query)
 
         if not query:
             return jsonify({'errore': 'Nessuna query fornita'}), 400
 
         connection = get_db_connection()
         results = read_db(connection, query)
+
+        print("risultati ottenuti:", results)
+
         return jsonify({'risultato': results})
     except Exception as e:
+
+        print("Errore nel backend:", str(e))
         return jsonify({'errore': str(e)}), 500
     finally:
         if 'connection' in locals() and connection:

@@ -1,3 +1,5 @@
+import React,{useState} from "react";
+
 const App = () => {
   const [risultato, setRisultato] = useState(null);
   const [error, setError] = useState(null);
@@ -80,3 +82,5 @@ const App = () => {
       </div>
   );
 };
+
+export default App;
