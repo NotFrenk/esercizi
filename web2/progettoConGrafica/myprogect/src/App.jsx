@@ -22,16 +22,35 @@ const App = () => {
     }, []); // Esegui solo al montaggio del componente
 
     return (
-        <div>
-            <h1>Aeroporti</h1>
-            {error && <p style={{ color: "red" }}>Errore: {error}</p>}
-            <ul>
-                {aeroporti.map((aeroporto, index) => (
-                    <li key={index}>{JSON.stringify(aeroporto)}</li>
-                ))}
-            </ul>
-        </div>
-    );
-};
+        <div style={{ padding: "20px"}}>
+          <h1>Gestione Query</h1>
+          <div>
+            <button onClick={() => fetchQuery('/aeroporti')}>Visualizza aeroporti</button>
+            <button onClick={() => fetchQuery('/vol.sopra.med')}>Voli sopra la media</button>
+            <button onClick={() => fetchQuery('/serv.api')}>Città servite da apitalia</button>
+          </div>
+          <div style={{ marginTop: "20px"}}>
+            <h2>Query personalizata</h2>
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Scrivi una query SQL"
+              style={{width: "300px", marginRight: "10px"}}
+            />
+            <button onClick={sendCustomQuery}>Esegui Query</button>
+          </div>
+          <div style={{marginTop: "20"}}>
+            {error && <p style={{color: "red"}}> Errore: {error}</p>}
+            {risultato && (
+              <div>
+                <h2>Risultato:</h2>
+                <ul>
+                  {risultato.map((item, index) => (
+                    <li key = {index}>{JSON.stringify(item)}</li>
+                  ))}
+                </ul>
+          </div>
+            )}
 
 export default App;
