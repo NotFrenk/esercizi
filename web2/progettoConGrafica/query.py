@@ -6,32 +6,32 @@ from flask_cors import CORS
 DB_CONFIG = {
     "host": "localhost",
     "port": "5432",
-    "dbname": "cielo",
+    "dbname": "postgres",
     "user": "postgres",
     "password": "postgres",
 }
 
-# Connessione al database
-def get_db_connection():
-    try:
-        connection = psycopg2.connect(**DB_CONFIG)
-        print("Connessione riuscita al database")
-        return connection
-    except Exception as e:
-        print(f"Errore durante la connessione al database: {e}")
-        raise
+# # Connessione al database
+# def get_db_connection():
+#     try:
+#         connection = psycopg2.connect(**DB_CONFIG)
+#         print("Connessione riuscita al database")
+#         return connection
+#     except Exception as e:
+#         print(f"Errore durante la connessione al database: {e}")
+#         raise
 
-# Eseguire una query sul database
-def read_db(connection, query):
-    try:
-        cursor = connection.cursor()
-        cursor.execute(query)
-        rows = cursor.fetchall()
-        return rows
-    except Exception as e:
-        raise e
-    finally:
-        cursor.close()
+# # Eseguire una query sul database
+# def read_db(connection, query):
+#     try:
+#         cursor = connection.cursor()
+#         cursor.execute(query)
+#         rows = cursor.fetchall()
+#         return rows
+#     except Exception as e:
+#         raise e
+#     finally:
+#         cursor.close()
 
 # Creazione dell'app Flask
 app = Flask(__name__)
@@ -48,36 +48,60 @@ def home():
     <p>Usa <a href='/personalizzata'>/personalizzata</a> per eseguire una query personalizzata.</p>
     """
 
-@app.route('/aeroporti')
+
+@app.route('/aeroporti', methods=['GET'])
 def aeroporti():
-    try:
-        connection = get_db_connection()
-        query = "SELECT * FROM aeroporto"
-        results = read_db(connection, query)
-        return jsonify({'risultato': results})
-    except Exception as e:
-        return jsonify({'errore': str(e)}), 500
-    finally:
-        connection.close()
+    # Elenco Aeroporti
+    return jsonify(
+
+{'risultato': [('JFK', 'JFK Airport', '300'), 
+                ('FCO', 'Aeroporto di Roma Fiumicino', '499.99'), 
+                ('CIA', 'Aeroporto di Roma Ciampino', '170'), 
+                ('CDG', 'Charles de Gaulle, Aeroport de Paris', '278'), 
+                ('HTR', 'Heathrow Airport, London', '300'), 
+                ('GER', 'AE Ger', '600')]}
+)
+#@app.route('/aeroporti')
+# def aeroporti():
+#     try:
+#         connection = get_db_connection()
+#         query = "SELECT * FROM aeroporto"
+#         results = read_db(connection, query)
+#         return jsonify({'risultato': results})
+#     except Exception as e:
+#         return jsonify({'errore': str(e)}), 500
+#     finally:
+#         connection.close()
 
 @app.route('/vol.sopra.med')
-def voli_sopra_media():
-    try:
-        connection = get_db_connection()
-        query = """
-        SELECT V.codice, V.comp, V.durataMinuti 
-        FROM volo V 
-        WHERE V.durataMinuti > (
-            SELECT AVG(v2.durataMinuti) 
-            FROM volo v2 
-            WHERE v2.comp = V.comp)
-        """
-        results = read_db(connection, query)
-        return jsonify({'risultato': results})
-    except Exception as e:
-        return jsonify({'errore': str(e)}), 500
-    finally:
-        connection.close()
+def y():
+    # Elenco Aeroporti
+    return jsonify(
+
+{'risultato': [('JFK', 'JFK Airport', '300'), 
+                ('FCO', 'Aeroporto di Roma Fiumicino', '499.99'), 
+                ('CIA', 'Aeroporto di Roma Ciampino', '170'), 
+                ('CDG', 'Charles de Gaulle, Aeroport de Paris', '278'), 
+                ('HTR', 'Heathrow Airport, London', '300'), 
+                ('GER', 'AE Ger', '600')]}
+    )
+# def voli_sopra_media():
+#     try:
+#         connection = get_db_connection()
+#         query = """
+#         SELECT V.codice, V.comp, V.durataMinuti 
+#         FROM volo V 
+#         WHERE V.durataMinuti > (
+#             SELECT AVG(v2.durataMinuti) 
+#             FROM volo v2 
+#             WHERE v2.comp = V.comp)
+#         """
+#         results = read_db(connection, query)
+#         return jsonify({'risultato': results})
+#     except Exception as e:
+#         return jsonify({'errore': str(e)}), 500
+#     finally:
+#         connection.close()
 
 @app.route('/serv.api')
 def cita_apitalia():

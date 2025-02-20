@@ -1,42 +1,73 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  background: url('/immaginehometop.png') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Contenitore principale */
+.app-container {
   text-align: center;
+  padding: 20px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+#root{margin: auto;}
+
+/* Sfondo scuro per migliorare la leggibilità */
+.app-header {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 10px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Barra dei pulsanti */
+.app-nav {
+  margin-top: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.app-nav button {
+  background-color: rgba(255, 255, 255, 0.521);
+  color: rgb(0, 0, 0);
+  border: 2px solid white;
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 19px;
+  transition: all 0.3s ease;
 }
 
-.card {
-  padding: 2em;
+.app-nav button:hover {
+  background-color: white;
+  color: black;
+  transform: scale(1.05);
 }
 
-.read-the-docs {
-  color: #888;
+/* Contenitore risultati */
+.result-container {
+  margin-top: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.result-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.result-container li {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+/* Messaggio di errore */
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 20px;
 }

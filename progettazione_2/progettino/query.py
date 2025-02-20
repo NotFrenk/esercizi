@@ -4,32 +4,34 @@ from flask import Flask, jsonify, request
 
 host = "localhost"
 port = "5432"
-dbname = "cielo"
+dbname = "postgres"
 user = "postgres"
 password = "postgres"
 
-try:
-    connection = psycopg2.connect(
-        host=host, 
-        port=port, 
-        dbname=dbname, 
-        user=user, 
-        password=password
-    )
-    print("Connessione riuscita al database")
-except Exception as e:
-    print(f"Errore durante l'esecuzione del programma: {e}")
+app = Flask(__name__)
 
-def read_db(connection, query):
+def read_db(query):
+    connection = None
+    cursor = None
     try:
+        connection = psycopg2.connect(
+            host=host, 
+            port=port, 
+            dbname=dbname, 
+            user=user, 
+            password=password
+        )
+    
         cursor = connection.cursor()
         cursor.execute(query)
         rows = cursor.fetchall()
         return rows
     except Exception as e:
+        print(f"Errore nella query: {e}")
         raise e
     finally:
         cursor.close()
+        connection.close()
 
 
 
@@ -47,12 +49,12 @@ def home():
 
 @app.route('/aeroporti')
 def aeroporti():
-   retQuery = read_db(connection, "SELECT * FROM aeroporto")
+   retQuery = read_db("SELECT * FROM aeroporto")
    return jsonify({'risultato' : retQuery})
 
 @app.route('/vol.sopra.med')
 def voli_sopra_media():
-    retQuery = read_db(connection, 
+    retQuery = read_db(
         """        
         SELECT V.codice, V.comp, V.durataMinuti 
         FROM volo V 
@@ -85,7 +87,7 @@ def crea_query():
         if not query:
             return jsonify({'errore':'nessuna query fornita'}), 400
         
-        retQuery = read_db(connection, query)
+        retQuery = read_db(query)
 
         return jsonify({'Risultato': retQuery})
     except Exception as e:
