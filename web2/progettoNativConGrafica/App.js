@@ -48,7 +48,7 @@ const App = () => {
                 <Text style={styles.buttonText}>{                  
                   endpoint === "/aeroporti" ? "Voli Fuori Italia" :
                   endpoint === "/vol.sopra.med" ? "Voli in Italia" :
-                  endpoint === "/serv.api" ? "Città Servite da Apitalia": null
+                  endpoint === "/serv.api" ? "Tutti Voli": null
                   }
 
                   </Text>
