@@ -49,11 +49,11 @@ const App = () => {
                   endpoint === "/aeroporti" ? "Voli Fuori Italia" :
                   endpoint === "/vol.sopra.med" ? "Voli in Italia" :
                   endpoint === "/serv.api" ? "Città Servite da Apitalia": null
-                  };
+                  }
 
                   </Text>
               </TouchableOpacity>
-            ))};
+            ))}
           </View>
 
           {loading && <ActivityIndicator size="large" color="#fff" style={styles.loader} />}
