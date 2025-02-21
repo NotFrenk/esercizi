@@ -45,13 +45,15 @@ const App = () => {
           <View style={styles.nav}>
             {["/aeroporti", "/vol.sopra.med", "/serv.api"].map((endpoint, index) => (
               <TouchableOpacity key={index} style={styles.button} onPress={() => fetchQuery(endpoint)}>
-                <Text style={styles.buttonText}>{
-                  endpoint === "/aeroporti" ? "Visualizza Aeroporti" :
-                  endpoint === "/vol.sopra.med" ? "Voli Sopra la Media" :
-                  "Città Servite da Apitalia"
-                }</Text>
+                <Text style={styles.buttonText}>{                  
+                  endpoint === "/aeroporti" ? "Voli Fuori Italia" :
+                  endpoint === "/vol.sopra.med" ? "Voli in Italia" :
+                  endpoint === "/serv.api" ? "Città Servite da Apitalia": null
+                  };
+
+                  </Text>
               </TouchableOpacity>
-            ))}
+            ))};
           </View>
 
           {loading && <ActivityIndicator size="large" color="#fff" style={styles.loader} />}
