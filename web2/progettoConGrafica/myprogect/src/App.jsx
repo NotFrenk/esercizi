@@ -6,8 +6,7 @@ import "./App.css";
 const App = () => {
   const [risultato, setRisultato] = useState(null);
   const [error, setError] = useState(null);
-  const [isVisible, setIsVisible] = useState(true); // Stato per controllare la visibilità dell'immagine
-
+  
   const fetchQuery = (endpoint) => {
       fetch(`http://localhost:5001${endpoint}`)
           .then(response => {
@@ -34,9 +33,9 @@ return (
       </header>
 
       <nav className="app-nav">
-        <button onClick={() => fetchQuery("/aeroporti")}>Visualizza Aeroporti</button>
-        <button onClick={() => fetchQuery("/vol.sopra.med")}>Voli Sopra la Media</button>
-        <button onClick={() => fetchQuery("/serv.api")}>Città Servite da Apitalia</button>
+        <button onClick={() => fetchQuery("/aeroporti")}>Voli Fuori Italia</button>
+        <button onClick={() => fetchQuery("/vol.sopra.med")}>Voli in Italia</button>
+        <button onClick={() => fetchQuery("/serv.api")}>Tutti Voli</button>
       </nav>
           
 
