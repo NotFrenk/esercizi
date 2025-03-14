@@ -1,4 +1,5 @@
-let nome = "Mario";
+let nome = "Frenk";
 let mostraNome = () => {
-   document.getElementById("output").innerText= "Ciao " + nome;
-}
+    console.log(nome);
+    document.getElementById("esercizio1").innerText = `Mi chiamo ${nome}`;
+};
