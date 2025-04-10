@@ -13,8 +13,9 @@ import os
 # Get the directory where the script is located
 script_dir = os.path.dirname(os.path.abspath(__file__))
 # Construct the path to the data file
-data_path = os.path.join(script_dir, '../dati/SomeMusicAlbums.csv')
+data_path = os.path.join(script_dir, '../dati/Titanic.csv')
 df = pd.read_csv(data_path)
+
 
 # # Leggi data da un file CSV in un dataframe
 # df = pd.read_csv("../dati/SomeMusicAlbums.csv")
@@ -22,8 +23,17 @@ df = pd.read_csv(data_path)
 # # Scrvi la struttura del dataframe
 # print(df.dtypes)
 
+# statistiche di base
+df.describe()
+print (df.describe())
+
+
 # # Scrvi le prime 5 righe del dataframe
 # df.head()
+
+#Scrivi ultimi 7 righe del dataframe
+df.tail()
+print (df.tail(7).head(1).Name)
 
 # # Valori unici in una colonna
 # df_u = df['Released'].unique() 
